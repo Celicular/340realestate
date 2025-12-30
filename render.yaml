@@ -1,15 +1,12 @@
 services:
-  - type: web
+  - type: static
     name: 340-real-estate
-    runtime: node
-    region: ohio
-    plan: starter
-
-    startCommand: npm start
-
+    buildCommand: npm install && npm run build
+    staticPublishPath: build
+    
     envVars:
       - key: NODE_ENV
-        value: development
+        value: production
       - key: REACT_APP_FIREBASE_API_KEY
         sync: false
       - key: REACT_APP_FIREBASE_AUTH_DOMAIN
@@ -28,5 +25,7 @@ services:
         sync: false
       - key: REACT_APP_SUPABASE_ANON_KEY
         sync: false
-
-    healthCheckPath: /
+    
+    routes:
+      - path: /*
+        destination: /index.html
