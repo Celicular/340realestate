@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { FaMapMarkerAlt, FaRulerCombined, FaTree, FaWater, FaCalendarAlt, FaDollarSign } from "react-icons/fa";
+import {
+  FaMapMarkerAlt,
+  FaRulerCombined,
+  FaTree,
+  FaWater,
+  FaCalendarAlt,
+  FaDollarSign,
+} from "react-icons/fa";
 import { BsHouseDoorFill, BsArrowLeft } from "react-icons/bs";
 import { getPortfolioItems } from "../../firebase/firestore";
 
@@ -16,17 +23,19 @@ const LandSoldDetail = () => {
     const fetchProperty = async () => {
       try {
         setLoading(true);
-        const result = await getPortfolioItems('land', { status: 'recent-sale' });
-        
+        const result = await getPortfolioItems("land", {
+          status: "recent-sale",
+        });
+
         if (result.success) {
-          const foundProperty = result.data.find(p => p.id === id);
+          const foundProperty = result.data.find((p) => p.id === id);
           if (foundProperty) {
             setProperty(foundProperty);
           } else {
-            setError('Property not found');
+            setError("Property not found");
           }
         } else {
-          setError(result.error || 'Failed to fetch property');
+          setError(result.error || "Failed to fetch property");
         }
       } catch (err) {
         setError(err.message);
@@ -45,7 +54,9 @@ const LandSoldDetail = () => {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Loading Property...</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            Loading Property...
+          </h2>
         </div>
       </div>
     );
@@ -72,7 +83,9 @@ const LandSoldDetail = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Property Not Found</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            Property Not Found
+          </h2>
           <button
             onClick={() => navigate(-1)}
             className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
@@ -89,24 +102,26 @@ const LandSoldDetail = () => {
   };
 
   const prevImage = () => {
-    setCurrentImage((prev) => (prev - 1 + property.images.length) % property.images.length);
+    setCurrentImage(
+      (prev) => (prev - 1 + property.images.length) % property.images.length
+    );
   };
 
   const formatPrice = (price) => {
-    if (typeof price === 'number') {
+    if (typeof price === "number") {
       return `$${price.toLocaleString()}`;
     }
     return price;
   };
 
   const getLocationDisplay = (location) => {
-    if (typeof location === 'string') {
+    if (typeof location === "string") {
       return location;
     }
     if (location && location.address) {
       return location.address;
     }
-    return 'Location not specified';
+    return "Location not specified";
   };
 
   return (
@@ -128,7 +143,9 @@ const LandSoldDetail = () => {
         {/* Property Title and Status */}
         <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h1 className="text-3xl font-bold text-gray-800">{property.title}</h1>
+            <h1 className="text-3xl font-bold text-gray-800">
+              {property.title}
+            </h1>
             <span className="px-4 py-2 bg-red-500 text-white rounded-full text-sm font-semibold">
               {property.status}
             </span>
@@ -139,7 +156,9 @@ const LandSoldDetail = () => {
           </div>
           <div className="flex items-center gap-4 text-2xl font-bold text-red-600">
             <span>{formatPrice(property.soldPrice)}</span>
-            <span className="text-sm text-gray-500 font-normal">Sold {property.soldDate}</span>
+            <span className="text-sm text-gray-500 font-normal">
+              Sold {property.soldDate}
+            </span>
           </div>
         </div>
 
@@ -177,7 +196,7 @@ const LandSoldDetail = () => {
                 {currentImage + 1} / {property.images.length}
               </div>
             </div>
-            
+
             {/* Thumbnail Navigation */}
             {property.images.length > 1 && (
               <div className="p-4 flex gap-2 overflow-x-auto">
@@ -186,10 +205,16 @@ const LandSoldDetail = () => {
                     key={index}
                     onClick={() => setCurrentImage(index)}
                     className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 ${
-                      index === currentImage ? "border-blue-500" : "border-gray-200"
+                      index === currentImage
+                        ? "border-blue-500"
+                        : "border-gray-200"
                     }`}
                   >
-                    <img src={img} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+                    <img
+                      src={img}
+                      alt={`Thumbnail ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
                   </button>
                 ))}
               </div>
@@ -200,13 +225,17 @@ const LandSoldDetail = () => {
           <div className="space-y-6">
             {/* Overview */}
             <div className="bg-white rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Property Overview</h2>
+              <h2 className="text-xl font-semibold text-gray-800 mb-4">
+                Property Overview
+              </h2>
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex items-center gap-3">
                   <FaRulerCombined className="w-5 h-5 text-gray-500" />
                   <div>
                     <p className="text-sm text-gray-500">Lot Size</p>
-                    <p className="font-semibold">{property.overview.lotSizeAcres} Acres</p>
+                    <p className="font-semibold">
+                      {property.overview.lotSizeAcres} Acres
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -227,7 +256,9 @@ const LandSoldDetail = () => {
                   <FaWater className="w-5 h-5 text-gray-500" />
                   <div>
                     <p className="text-sm text-gray-500">Waterfront</p>
-                    <p className="font-semibold">{property.details.waterfront === "Y" ? "Yes" : "No"}</p>
+                    <p className="font-semibold">
+                      {property.details.waterfront === "Y" ? "Yes" : "No"}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -235,11 +266,15 @@ const LandSoldDetail = () => {
 
             {/* Sale Information */}
             <div className="bg-white rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Sale Information</h2>
+              <h2 className="text-xl font-semibold text-gray-800 mb-4">
+                Sale Information
+              </h2>
               <div className="space-y-3">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Sold Price:</span>
-                  <span className="font-semibold text-red-600">{formatPrice(property.soldPrice)}</span>
+                  <span className="font-semibold text-red-600">
+                    {formatPrice(property.soldPrice)}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Sold Date:</span>
@@ -247,7 +282,9 @@ const LandSoldDetail = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Under Contract Date:</span>
-                  <span className="font-semibold">{property.underContractDate}</span>
+                  <span className="font-semibold">
+                    {property.underContractDate}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">MLS #:</span>
@@ -255,31 +292,43 @@ const LandSoldDetail = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Financing:</span>
-                  <span className="font-semibold">{property.details.financing}</span>
+                  <span className="font-semibold">
+                    {property.details.financing}
+                  </span>
                 </div>
               </div>
             </div>
 
             {/* Location Information */}
             <div className="bg-white rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Location Details</h2>
+              <h2 className="text-xl font-semibold text-gray-800 mb-4">
+                Location Details
+              </h2>
               <div className="space-y-3">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Quarter:</span>
-                  <span className="font-semibold">{property.location.quarter}</span>
+                  <span className="font-semibold">
+                    {property.location.quarter}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Subdivision:</span>
-                  <span className="font-semibold">{property.location.subdivision}</span>
+                  <span className="font-semibold">
+                    {property.location.subdivision}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Country:</span>
-                  <span className="font-semibold">{property.location.country}</span>
+                  <span className="font-semibold">
+                    {property.location.country}
+                  </span>
                 </div>
                 {property.location.additionalLegalAddress && (
                   <div className="flex justify-between">
                     <span className="text-gray-600">Legal Address:</span>
-                    <span className="font-semibold">{property.location.additionalLegalAddress}</span>
+                    <span className="font-semibold">
+                      {property.location.additionalLegalAddress}
+                    </span>
                   </div>
                 )}
               </div>
@@ -289,39 +338,74 @@ const LandSoldDetail = () => {
 
         {/* Description */}
         <div className="bg-white rounded-lg shadow-sm p-6 mt-8">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">Property Description</h2>
-          <p className="text-gray-700 leading-relaxed">{property.description}</p>
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">
+            Property Description
+          </h2>
+          <p className="text-gray-700 leading-relaxed">
+            {property.description}
+          </p>
         </div>
 
         {/* Additional Details */}
         <div className="bg-white rounded-lg shadow-sm p-6 mt-8">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">Additional Details</h2>
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">
+            Additional Details
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h3 className="font-semibold text-gray-800 mb-3">Property Features</h3>
+              <h3 className="font-semibold text-gray-800 mb-3">
+                Property Features
+              </h3>
               <div className="space-y-2 text-sm text-gray-600">
-                <div><strong>Improved Property:</strong> {property.details.improvedProperty ? "Yes" : "No"}</div>
+                <div>
+                  <strong>Improved Property:</strong>{" "}
+                  {property.details.improvedProperty ? "Yes" : "No"}
+                </div>
                 {property.details.improvements && (
-                  <div><strong>Improvements:</strong> {property.details.improvements}</div>
+                  <div>
+                    <strong>Improvements:</strong>{" "}
+                    {property.details.improvements}
+                  </div>
                 )}
-                <div><strong>Easements:</strong> {property.details.easements}</div>
-                <div><strong>Access:</strong> {property.details.access}</div>
-                <div><strong>Restrictions:</strong> {property.details.restrictions}</div>
-                <div><strong>Stamp Tax:</strong> {property.details.stampTax}</div>
+                <div>
+                  <strong>Easements:</strong> {property.details.easements}
+                </div>
+                <div>
+                  <strong>Access:</strong> {property.details.access}
+                </div>
+                <div>
+                  <strong>Restrictions:</strong> {property.details.restrictions}
+                </div>
+                <div>
+                  <strong>Stamp Tax:</strong> {property.details.stampTax}
+                </div>
               </div>
             </div>
             <div>
-              <h3 className="font-semibold text-gray-800 mb-3">Views & Features</h3>
+              <h3 className="font-semibold text-gray-800 mb-3">
+                Views & Features
+              </h3>
               <div className="space-y-2 text-sm text-gray-600">
-                {property.overview.view && property.overview.view.length > 0 && (
-                  <div>
-                    <strong>Views:</strong> {property.overview.view.join(", ")}
-                  </div>
-                )}
-                <div><strong>Lot Size (Sq Ft):</strong> {property.overview.lotSizeSqFt.toLocaleString()}</div>
-                <div><strong>Hurricane Damaged:</strong> {property.overview.hurricaneDamaged ? "Yes" : "No"}</div>
+                {property.overview.view &&
+                  property.overview.view.length > 0 && (
+                    <div>
+                      <strong>Views:</strong>{" "}
+                      {property.overview.view.join(", ")}
+                    </div>
+                  )}
+                <div>
+                  <strong>Lot Size (Sq Ft):</strong>{" "}
+                  {property.overview.lotSizeSqFt.toLocaleString()}
+                </div>
+                <div>
+                  <strong>Hurricane Damaged:</strong>{" "}
+                  {property.overview.hurricaneDamaged ? "Yes" : "No"}
+                </div>
                 {property.overview.hurricaneDamageSource && (
-                  <div><strong>Damage Source:</strong> {property.overview.hurricaneDamageSource}</div>
+                  <div>
+                    <strong>Damage Source:</strong>{" "}
+                    {property.overview.hurricaneDamageSource}
+                  </div>
                 )}
               </div>
             </div>

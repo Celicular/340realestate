@@ -86,95 +86,121 @@ const LoadingSpinner = () => (
 
 function App() {
   return (
-  <ErrorBoundary>
-    <AuthProvider>
-      <div className="App relative scroll-smooth">
-      {/* 🌐 Header */}
-      <Header />
-      
-      <ScrollToTop />
-      {/* 📄 Main Page Content */}
-      <main>
-        <Suspense fallback={<LoadingSpinner />}>
-          <AnalyticsTracker />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/aboutus" element={<AboutUs />} />
-            <Route path="/incentives" element={<Insentive />} />
-            <Route path="/testimonial" element={<Testimonial />} />
-            <Route path="/villa-rentals/:slug" element={<VillaDetail />} />
-            <Route path="/villa/:slug" element={<VillaDetail />} />
-            <Route path="/rental/:slug" element={<RentalDetail />} />
-            <Route path="/edit/:id" element={<UpdateRentalPropertyForm />} />
-            <Route path="/saleshistory" element={<SalesHistory />} />
-            <Route path="/contact" element={<Contactus />} />
-            <Route path="/blogs" element={<BlogList />} />
-            <Route path="/blog/:id" element={<BlogDetails />} />
-            <Route path="/attraction/video" element={<Attraction />} />
-            <Route path="/termuse" element={<TermsOfUse />} />
-            <Route path="/privacy" element={<PrivacyPolicy />} />
-            <Route path="/mls" element={<SearchMlsMain />} />
-            <Route path="/about-340-realestate-team" element={<AboutRealEstate />} />
-            <Route path="/agent/:id" element={<AgentDetail />} />
-            <Route path="/property/:id" element={<PropertyDetail />} />
-            <Route path="/soldproperty/:id" element={<SoldPropertyDetail />} />
-            <Route path="/landproperty/:id" element={<LandPropertyDetail />} />
-            <Route path="/landsold/:id" element={<LandSoldDetail />} />
-            <Route path="/properties" element={<Properties />} />
-            <Route path="/landproperties" element={<LandProperties />} />
-            <Route path="/edit-viewing/:viewId" element={<EditViewingProperty />} />
-            <Route path="/delete-viewing/:viewId" element={<DeleteViewingProperty />} />
+    <ErrorBoundary>
+      <AuthProvider>
+        <div className="App relative scroll-smooth">
+          {/* 🌐 Header */}
+          <Header />
 
-            {/* Auth Routes */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/debug-registration" element={<RegistrationTest />} />
-            <Route path="/debug" element={<DebugPage />} />
-            <Route path="/migrate-reviews" element={<MigrateReviews />} />
-            <Route path="/migrate-agent-images" element={<AgentImageMigration />} />
-            <Route path="/migrate-agent-data" element={<AgentDataMigration />} />
+          <ScrollToTop />
+          {/* 📄 Main Page Content */}
+          <main>
+            <Suspense fallback={<LoadingSpinner />}>
+              <AnalyticsTracker />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/aboutus" element={<AboutUs />} />
+                <Route path="/incentives" element={<Insentive />} />
+                <Route path="/testimonial" element={<Testimonial />} />
+                <Route path="/villa-rentals/:slug" element={<VillaDetail />} />
+                <Route path="/villa/:slug" element={<VillaDetail />} />
+                <Route path="/rental/:slug" element={<RentalDetail />} />
+                <Route
+                  path="/edit/:id"
+                  element={<UpdateRentalPropertyForm />}
+                />
+                <Route path="/saleshistory" element={<SalesHistory />} />
+                <Route path="/contact" element={<Contactus />} />
+                <Route path="/blogs" element={<BlogList />} />
+                <Route path="/blog/:id" element={<BlogDetails />} />
+                <Route path="/attraction/video" element={<Attraction />} />
+                <Route path="/termuse" element={<TermsOfUse />} />
+                <Route path="/privacy" element={<PrivacyPolicy />} />
+                <Route path="/mls" element={<SearchMlsMain />} />
+                <Route
+                  path="/about-340-realestate-team"
+                  element={<AboutRealEstate />}
+                />
+                <Route path="/agent/:id" element={<AgentDetail />} />
+                <Route path="/property/:id" element={<PropertyDetail />} />
+                <Route
+                  path="/soldproperty/:id"
+                  element={<SoldPropertyDetail />}
+                />
+                <Route
+                  path="/landproperty/:id"
+                  element={<LandPropertyDetail />}
+                />
+                <Route path="/landsold/:id" element={<LandSoldDetail />} />
+                <Route path="/properties" element={<Properties />} />
+                <Route path="/landproperties" element={<LandProperties />} />
+                <Route
+                  path="/edit-viewing/:viewId"
+                  element={<EditViewingProperty />}
+                />
+                <Route
+                  path="/delete-viewing/:viewId"
+                  element={<DeleteViewingProperty />}
+                />
 
-            {/* Protected Dashboard Routes */}
-            <Route
-              path="/admin/admindashboard"
-              element={
-                <ProtectedRoute allowedRoles={["admin"]}>
-                  <AdminDashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/agent/agentdashboard"
-              element={
-                <ProtectedRoute allowedRoles={["agent"]}>
-                  <AgentDashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/agent/rentals"
-              element={
-                <ProtectedRoute allowedRoles={["agent", "admin"]}>
-                  <AgentRentalDashboard />
-                </ProtectedRoute>
-              }
-            />
+                {/* Auth Routes */}
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route
+                  path="/debug-registration"
+                  element={<RegistrationTest />}
+                />
+                <Route path="/debug" element={<DebugPage />} />
+                <Route path="/migrate-reviews" element={<MigrateReviews />} />
+                <Route
+                  path="/migrate-agent-images"
+                  element={<AgentImageMigration />}
+                />
+                <Route
+                  path="/migrate-agent-data"
+                  element={<AgentDataMigration />}
+                />
 
-            {/* Add more routes as needed */}
-          </Routes>
-        </Suspense>
-      </main>
+                {/* Protected Dashboard Routes */}
+                <Route
+                  path="/admin/admindashboard"
+                  element={
+                    <ProtectedRoute allowedRoles={["admin"]}>
+                      <AdminDashboard />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/agent/agentdashboard"
+                  element={
+                    <ProtectedRoute allowedRoles={["agent"]}>
+                      <AgentDashboard />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/agent/rentals"
+                  element={
+                    <ProtectedRoute allowedRoles={["agent", "admin"]}>
+                      <AgentRentalDashboard />
+                    </ProtectedRoute>
+                  }
+                />
 
-      {/* 🔻 Footer */}
-      <Footer />
+                {/* Add more routes as needed */}
+              </Routes>
+            </Suspense>
+          </main>
 
-      {/* Chatbot Floating Button & Modal */}
-      <ChatbotButton />
-      
-    </div>
-    </AuthProvider>
-  </ErrorBoundary>
+          {/* 🔻 Footer */}
+          <Footer />
+
+          {/* Chatbot Floating Button & Modal */}
+          <ChatbotButton />
+        </div>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 

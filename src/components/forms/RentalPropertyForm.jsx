@@ -1,5 +1,5 @@
 // -----------------------------------------------------------
-  // RENTAL PROPERTY FORM (FULLY REWRITTEN + MAPTILER)
+// RENTAL PROPERTY FORM (FULLY REWRITTEN + MAPTILER)
 // -----------------------------------------------------------
 
 import React, { useState, useEffect, useRef } from "react";
@@ -30,7 +30,8 @@ import { getCurrentUser } from "../../utils/auth";
 // ⭐ MAPTILER
 import * as maptilersdk from "@maptiler/sdk";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
-const MAPTILER_KEY = process.env.REACT_APP_MAPTILER_API_KEY || "YOUR_MAPTILER_API_KEY";
+const MAPTILER_KEY =
+  process.env.REACT_APP_MAPTILER_API_KEY || "YOUR_MAPTILER_API_KEY";
 maptilersdk.config.apiKey = MAPTILER_KEY;
 
 // -----------------------------------------------------------
@@ -65,7 +66,11 @@ const InputNumber = ({ label, value, onChange, step = "1", required }) => (
 
 const Checkbox = ({ label, checked, onChange }) => (
   <label className="flex items-center gap-2 text-sm">
-    <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} />
+    <input
+      type="checkbox"
+      checked={checked}
+      onChange={(e) => onChange(e.target.checked)}
+    />
     {label}
   </label>
 );
@@ -310,19 +315,29 @@ const RentalPropertyForm = ({ onSuccess, onCancel, userRole = "agent" }) => {
         </div>
 
         {onCancel && (
-          <button onClick={onCancel} className="p-2 hover:bg-gray-100 rounded-lg">
+          <button
+            onClick={onCancel}
+            className="p-2 hover:bg-gray-100 rounded-lg"
+          >
             <X />
           </button>
         )}
       </div>
 
       {/* Errors */}
-      {error && <div className="p-3 mb-4 bg-red-100 text-red-700 rounded-lg">{error}</div>}
-      {success && <div className="p-3 mb-4 bg-green-100 text-green-700 rounded-lg">{success}</div>}
+      {error && (
+        <div className="p-3 mb-4 bg-red-100 text-red-700 rounded-lg">
+          {error}
+        </div>
+      )}
+      {success && (
+        <div className="p-3 mb-4 bg-green-100 text-green-700 rounded-lg">
+          {success}
+        </div>
+      )}
 
       {/* FORM */}
       <form onSubmit={handleSubmit} className="space-y-10">
-
         {/* ----------------------------------------------------- */}
         {/* BASIC INFORMATION */}
         {/* ----------------------------------------------------- */}
@@ -353,7 +368,9 @@ const RentalPropertyForm = ({ onSuccess, onCancel, userRole = "agent" }) => {
               <select
                 className="w-full px-3 py-2 border rounded-lg"
                 value={formData.propertyInfo.type}
-                onChange={(e) => handleInputChange("propertyInfo", "type", e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("propertyInfo", "type", e.target.value)
+                }
               >
                 <option value="villa">Villa</option>
                 <option value="apartment">Apartment</option>
@@ -367,7 +384,9 @@ const RentalPropertyForm = ({ onSuccess, onCancel, userRole = "agent" }) => {
               <select
                 className="w-full px-3 py-2 border rounded-lg"
                 value={formData.propertyInfo.status}
-                onChange={(e) => handleInputChange("propertyInfo", "status", e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("propertyInfo", "status", e.target.value)
+                }
               >
                 <option value="available">Available</option>
                 <option value="rented">Rented</option>
@@ -378,13 +397,15 @@ const RentalPropertyForm = ({ onSuccess, onCancel, userRole = "agent" }) => {
 
           <div className="mt-4">
             <label className="text-sm mb-1 block">Description *</label>
-            <input 
+            <input
               type="text"
               required
               rows={4}
               className="w-full px-3 py-2 border rounded-lg"
               value={formData.propertyInfo.description}
-              onChange={(e) => handleInputChange("propertyInfo", "description", e.target.value)}
+              onChange={(e) =>
+                handleInputChange("propertyInfo", "description", e.target.value)
+              }
             />
           </div>
         </section>
@@ -432,7 +453,10 @@ const RentalPropertyForm = ({ onSuccess, onCancel, userRole = "agent" }) => {
               onChange={(v) =>
                 setFormData((p) => ({
                   ...p,
-                  location: { ...p.location, coordinates: { ...p.location.coordinates, lat: v } },
+                  location: {
+                    ...p.location,
+                    coordinates: { ...p.location.coordinates, lat: v },
+                  },
                 }))
               }
             />
@@ -444,7 +468,10 @@ const RentalPropertyForm = ({ onSuccess, onCancel, userRole = "agent" }) => {
               onChange={(v) =>
                 setFormData((p) => ({
                   ...p,
-                  location: { ...p.location, coordinates: { ...p.location.coordinates, lng: v } },
+                  location: {
+                    ...p.location,
+                    coordinates: { ...p.location.coordinates, lng: v },
+                  },
                 }))
               }
             />
@@ -452,8 +479,13 @@ const RentalPropertyForm = ({ onSuccess, onCancel, userRole = "agent" }) => {
 
           {/* MAPTILER MAP BLOCK */}
           <div className="mt-6">
-            <label className="block text-sm font-medium mb-2">Select Location on Map</label>
-            <div id="rentalMap" className="w-full h-64 rounded-lg border shadow-sm"></div>
+            <label className="block text-sm font-medium mb-2">
+              Select Location on Map
+            </label>
+            <div
+              id="rentalMap"
+              className="w-full h-64 rounded-lg border shadow-sm"
+            ></div>
             <p className="text-xs text-gray-500 mt-1">
               Click on the map to auto-fill Latitude & Longitude
             </p>
@@ -473,7 +505,9 @@ const RentalPropertyForm = ({ onSuccess, onCancel, userRole = "agent" }) => {
               required
               label="Bedrooms *"
               value={formData.details.bedrooms}
-              onChange={(v) => handleInputChange("details", "bedrooms", Number(v))}
+              onChange={(v) =>
+                handleInputChange("details", "bedrooms", Number(v))
+              }
             />
 
             <InputNumber
@@ -481,19 +515,25 @@ const RentalPropertyForm = ({ onSuccess, onCancel, userRole = "agent" }) => {
               step="0.5"
               label="Bathrooms *"
               value={formData.details.bathrooms}
-              onChange={(v) => handleInputChange("details", "bathrooms", Number(v))}
+              onChange={(v) =>
+                handleInputChange("details", "bathrooms", Number(v))
+              }
             />
 
             <InputNumber
               label="Max Occupancy"
               value={formData.details.maxOccupancy}
-              onChange={(v) => handleInputChange("details", "maxOccupancy", Number(v))}
+              onChange={(v) =>
+                handleInputChange("details", "maxOccupancy", Number(v))
+              }
             />
 
             <InputNumber
               label="Minimum Stay"
               value={formData.details.minimumStay}
-              onChange={(v) => handleInputChange("details", "minimumStay", Number(v))}
+              onChange={(v) =>
+                handleInputChange("details", "minimumStay", Number(v))
+              }
             />
           </div>
 
@@ -531,12 +571,16 @@ const RentalPropertyForm = ({ onSuccess, onCancel, userRole = "agent" }) => {
             <Checkbox
               label="Smoking Allowed"
               checked={formData.details.smokingAllowed}
-              onChange={(v) => handleInputChange("details", "smokingAllowed", v)}
+              onChange={(v) =>
+                handleInputChange("details", "smokingAllowed", v)
+              }
             />
             <Checkbox
               label="Children Allowed"
               checked={formData.details.childrenAllowed}
-              onChange={(v) => handleInputChange("details", "childrenAllowed", v)}
+              onChange={(v) =>
+                handleInputChange("details", "childrenAllowed", v)
+              }
             />
           </div>
         </section>
@@ -578,7 +622,9 @@ const RentalPropertyForm = ({ onSuccess, onCancel, userRole = "agent" }) => {
             <InputNumber
               label="Security Deposit"
               value={formData.pricing.securityDeposit}
-              onChange={(v) => handleInputChange("pricing", "securityDeposit", v)}
+              onChange={(v) =>
+                handleInputChange("pricing", "securityDeposit", v)
+              }
             />
           </div>
         </section>
@@ -672,7 +718,13 @@ const RentalPropertyForm = ({ onSuccess, onCancel, userRole = "agent" }) => {
             <select
               className="w-full px-3 py-2 border rounded-lg"
               value={formData.policies.cancellationPolicy}
-              onChange={(e) => handleInputChange("policies", "cancellationPolicy", e.target.value)}
+              onChange={(e) =>
+                handleInputChange(
+                  "policies",
+                  "cancellationPolicy",
+                  e.target.value
+                )
+              }
             >
               <option value="flexible">Flexible</option>
               <option value="moderate">Moderate</option>
@@ -686,7 +738,9 @@ const RentalPropertyForm = ({ onSuccess, onCancel, userRole = "agent" }) => {
               rows={3}
               className="w-full px-3 py-2 border rounded-lg"
               value={formData.policies.houseRules}
-              onChange={(e) => handleInputChange("policies", "houseRules", e.target.value)}
+              onChange={(e) =>
+                handleInputChange("policies", "houseRules", e.target.value)
+              }
             />
           </div>
         </section>
@@ -715,24 +769,34 @@ const RentalPropertyForm = ({ onSuccess, onCancel, userRole = "agent" }) => {
             <Input
               label="Emergency Contact"
               value={formData.contact.emergencyContact}
-              onChange={(v) => handleInputChange("contact", "emergencyContact", v)}
+              onChange={(v) =>
+                handleInputChange("contact", "emergencyContact", v)
+              }
             />
 
             <Input
               label="Key Pickup Location"
               value={formData.contact.keyPickupLocation}
-              onChange={(v) => handleInputChange("contact", "keyPickupLocation", v)}
+              onChange={(v) =>
+                handleInputChange("contact", "keyPickupLocation", v)
+              }
             />
           </div>
 
           <div className="mt-4">
-            <label className="block text-sm mb-1">Key Pickup Instructions</label>
+            <label className="block text-sm mb-1">
+              Key Pickup Instructions
+            </label>
             <textarea
               rows={3}
               className="w-full px-3 py-2 border rounded-lg"
               value={formData.contact.keyPickupInstructions}
               onChange={(e) =>
-                handleInputChange("contact", "keyPickupInstructions", e.target.value)
+                handleInputChange(
+                  "contact",
+                  "keyPickupInstructions",
+                  e.target.value
+                )
               }
             />
           </div>
@@ -743,7 +807,11 @@ const RentalPropertyForm = ({ onSuccess, onCancel, userRole = "agent" }) => {
         {/* ----------------------------------------------------- */}
         <div className="flex justify-end gap-4">
           {onCancel && (
-            <button onClick={onCancel} type="button" className="px-6 py-3 border rounded-lg">
+            <button
+              onClick={onCancel}
+              type="button"
+              className="px-6 py-3 border rounded-lg"
+            >
               Cancel
             </button>
           )}

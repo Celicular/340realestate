@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -19,10 +19,10 @@ class ErrorBoundary extends React.Component {
       error: error,
       errorInfo: errorInfo,
     });
-    
+
     // Log to console in development
-    if (process.env.NODE_ENV === 'development') {
-      console.error('Error caught by Error Boundary:', error, errorInfo);
+    if (process.env.NODE_ENV === "development") {
+      console.error("Error caught by Error Boundary:", error, errorInfo);
     }
   }
 
@@ -36,8 +36,8 @@ class ErrorBoundary extends React.Component {
               <p className="text-gray-700 text-lg mb-4">
                 Something went wrong. We're sorry for the inconvenience.
               </p>
-              
-              {process.env.NODE_ENV === 'development' && this.state.error && (
+
+              {process.env.NODE_ENV === "development" && this.state.error && (
                 <div className="bg-red-50 border border-red-200 rounded p-4 mb-4 text-left">
                   <p className="text-sm font-mono text-red-800 break-words">
                     <strong>Error:</strong> {this.state.error.toString()}
@@ -56,7 +56,7 @@ class ErrorBoundary extends React.Component {
               )}
 
               <button
-                onClick={() => window.location.href = '/'}
+                onClick={() => (window.location.href = "/")}
                 className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-colors"
               >
                 Go Home

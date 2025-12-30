@@ -478,7 +478,6 @@ export const deleteSaleProperty = async (saleId) => {
 
 // Sold Properties Collection
 
-
 export const deleteProperty = async (propertyId) => {
   try {
     await deleteDoc(doc(db, PROPERTIES_COLLECTION, propertyId));

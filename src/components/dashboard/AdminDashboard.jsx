@@ -30,8 +30,8 @@ import SoldApproval from "../admin/SoldApproval";
 
 // User Management Screens
 // import UserManagement from "../admin/UserManagement";
-import AddUser from "../admin/UserManagement/AddUser"; 
-import EditUser from "../admin/UserManagement/EditUser"; 
+import AddUser from "../admin/UserManagement/AddUser";
+import EditUser from "../admin/UserManagement/EditUser";
 import AssignRole from "../admin/UserManagement/AssignRole";
 import DeleteUser from "../admin/UserManagement/DeleteUser";
 
@@ -48,8 +48,7 @@ import DeleteViewingProperty from "../admin/Viewing/DeleteViewingProperty";
 // Forms
 import RentalPropertyForm from "../forms/RentalPropertyForm";
 import ViewAllRentalProperties from "../forms/ViewAllRentalProperties";
-import UpdateRentalPropertyForm from "../forms/UpdateRentalPropertyForm"; 
-
+import UpdateRentalPropertyForm from "../forms/UpdateRentalPropertyForm";
 
 // Firebase Utils
 import { logout, getCurrentUser } from "../../utils/auth";
@@ -66,7 +65,6 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(false);
   const [selectedViewId, setSelectedViewId] = useState(null);
 
-
   const [stats, setStats] = useState({
     pendingRentals: 0,
     pendingSales: 0,
@@ -81,16 +79,15 @@ const AdminDashboard = () => {
     setOpenDropdown((prev) => (prev === tabId ? null : tabId));
   };
 
-const handleEditViewing = (id) => {
-  setSelectedViewId(id);
-  setActiveTab("editViewing");
-};
+  const handleEditViewing = (id) => {
+    setSelectedViewId(id);
+    setActiveTab("editViewing");
+  };
 
-const handleDeleteViewing = (id) => {
-  setSelectedViewId(id);
-  setActiveTab("deleteViewing");
-};
-
+  const handleDeleteViewing = (id) => {
+    setSelectedViewId(id);
+    setActiveTab("deleteViewing");
+  };
 
   useEffect(() => {
     document.body.classList.add("hide-public-navbar");
@@ -100,8 +97,6 @@ const handleDeleteViewing = (id) => {
   useEffect(() => {
     loadDashboardStats();
   }, []);
-
-
 
   const loadDashboardStats = async () => {
     try {
@@ -113,7 +108,9 @@ const handleDeleteViewing = (id) => {
         getAllPortfolioItems({ status: "recent-sale" }),
       ]);
 
-      const pendingRentals = rentalResult.success ? rentalResult.data.length : 0;
+      const pendingRentals = rentalResult.success
+        ? rentalResult.data.length
+        : 0;
       const pendingSales = saleResult.success ? saleResult.data.length : 0;
       const pendingSold = soldResult.success ? soldResult.data.length : 0;
 
@@ -154,9 +151,21 @@ const handleDeleteViewing = (id) => {
       isDropdown: true,
       children: [
         { id: "add-portfolio", name: "Add Portfolio", component: AddPortfolio },
-        { id: "view-portfolio", name: "View Portfolio", component: PortfolioManagement },
-        { id: "edit-portfolio", name: "Edit Portfolio", component: EditPortfolio },
-        { id: "delete-portfolio", name: "Delete Portfolio", component: DeletePortfolio },
+        {
+          id: "view-portfolio",
+          name: "View Portfolio",
+          component: PortfolioManagement,
+        },
+        {
+          id: "edit-portfolio",
+          name: "Edit Portfolio",
+          component: EditPortfolio,
+        },
+        {
+          id: "delete-portfolio",
+          name: "Delete Portfolio",
+          component: DeletePortfolio,
+        },
       ],
     },
     {
@@ -173,7 +182,7 @@ const handleDeleteViewing = (id) => {
               onEdit={handleEditViewing}
               onDelete={handleDeleteViewing}
             />
-          )
+          ),
         },
         {
           id: "editViewing",
@@ -185,37 +194,41 @@ const handleDeleteViewing = (id) => {
           id: "deleteViewing",
           name: "Delete Viewing",
           component: DeleteViewingProperty,
-          props: { selectedViewId }
+          props: { selectedViewId },
         },
       ],
     },
-    {    // Rental Operations
+    {
+      // Rental Operations
       id: "rental-property",
       name: "Rental Property",
       icon: Home,
       isDropdown: true,
       children: [
         {
-           id: "add-rental", 
-          name: "Add Rental Property", 
-          icon: Home, 
-          component: RentalPropertyForm 
+          id: "add-rental",
+          name: "Add Rental Property",
+          icon: Home,
+          component: RentalPropertyForm,
         },
         {
-         id: "view-rentals", 
-         name: "View Rentals", 
-         icon: Home, 
-         component: () => 
-          (<ViewAllRentalProperties setActiveTab={setActiveTab} />) 
+          id: "view-rentals",
+          name: "View Rentals",
+          icon: Home,
+          component: () => (
+            <ViewAllRentalProperties setActiveTab={setActiveTab} />
+          ),
         },
-        { id: "edit-rental", 
-          name: "Edit Rental", 
-          icon: Home, 
-          component: UpdateRentalPropertyForm 
+        {
+          id: "edit-rental",
+          name: "Edit Rental",
+          icon: Home,
+          component: UpdateRentalPropertyForm,
         },
       ],
     },
-    {    // Agent Management
+    {
+      // Agent Management
       id: "agent-management",
       name: "Agent Management",
       icon: Shield,
@@ -227,11 +240,26 @@ const handleDeleteViewing = (id) => {
       icon: FileText,
       component: EmailConfiguration,
     },
-   
+
     // Other Panels
-    { id: "booking", name: "Booking Requests", icon: Calendar, component: BookingManagement },
-    { id: "contact", name: "Contact Messages", icon: Mail, component: ContactManagement },
-    { id: "blog", name: "Blog Management", icon: FileText, component: BlogManagement },
+    {
+      id: "booking",
+      name: "Booking Requests",
+      icon: Calendar,
+      component: BookingManagement,
+    },
+    {
+      id: "contact",
+      name: "Contact Messages",
+      icon: Mail,
+      component: ContactManagement,
+    },
+    {
+      id: "blog",
+      name: "Blog Management",
+      icon: FileText,
+      component: BlogManagement,
+    },
 
     // Approval Tabs
     {
@@ -311,14 +339,20 @@ const handleDeleteViewing = (id) => {
                     }
                   }}
                   className={`flex items-center w-full px-4 py-3 rounded-xl font-medium transition-all ${
-                    isActive ? "bg-blue-600 text-white shadow-md" : "text-gray-700 hover:bg-gray-100"
+                    isActive
+                      ? "bg-blue-600 text-white shadow-md"
+                      : "text-gray-700 hover:bg-gray-100"
                   }`}
                 >
                   <Icon className="w-5 h-5" />
-                  {!collapsed && <span className="ml-3 flex-1">{tab.name}</span>}
+                  {!collapsed && (
+                    <span className="ml-3 flex-1">{tab.name}</span>
+                  )}
 
                   {!collapsed && tab.isDropdown && (
-                    <span className="text-xs">{openDropdown === tab.id ? "▲" : "▼"}</span>
+                    <span className="text-xs">
+                      {openDropdown === tab.id ? "▲" : "▼"}
+                    </span>
                   )}
 
                   {!collapsed && tab.badge > 0 && (
@@ -373,8 +407,12 @@ const handleDeleteViewing = (id) => {
                 <Shield className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
-                <p className="text-sm text-gray-500">Property Management System</p>
+                <h1 className="text-2xl font-bold text-gray-900">
+                  Admin Dashboard
+                </h1>
+                <p className="text-sm text-gray-500">
+                  Property Management System
+                </p>
               </div>
             </div>
 
@@ -382,7 +420,9 @@ const handleDeleteViewing = (id) => {
             {user && (
               <div className="flex items-center space-x-3">
                 <div className="text-right">
-                  <p className="text-sm font-medium text-gray-900">{user.name}</p>
+                  <p className="text-sm font-medium text-gray-900">
+                    {user.name}
+                  </p>
                   <p className="text-xs text-gray-500">Administrator</p>
                 </div>
                 <div className="h-8 w-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
@@ -420,17 +460,15 @@ const handleDeleteViewing = (id) => {
 
           <StatCard
             title="Total Pending"
-            value={stats.pendingRentals + stats.pendingSales + stats.pendingSold}
+            value={
+              stats.pendingRentals + stats.pendingSales + stats.pendingSold
+            }
             icon={<Activity className="text-green-600" />}
             bg="bg-green-50"
           />
-        </div>     
+        </div>
 
-        {ActiveComponent && (
-          <ActiveComponent selectedViewId={selectedViewId} />
-        )}
-
-       
+        {ActiveComponent && <ActiveComponent selectedViewId={selectedViewId} />}
       </main>
     </div>
   );

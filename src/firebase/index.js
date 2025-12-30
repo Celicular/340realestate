@@ -1,9 +1,9 @@
 // Firebase configuration
-import { auth, db, storage } from './config';
-export { default as app } from './config';
-export { auth } from './config';
-export { db } from './config';
-export { storage } from './config';
+import { auth, db, storage } from "./config";
+export { default as app } from "./config";
+export { auth } from "./config";
+export { db } from "./config";
+export { storage } from "./config";
 
 // Authentication utilities
 export {
@@ -12,8 +12,8 @@ export {
   logoutUser,
   resetPassword,
   onAuthStateChange,
-  getCurrentUser
-} from './auth';
+  getCurrentUser,
+} from "./auth";
 
 // Firestore database utilities
 export {
@@ -47,8 +47,8 @@ export {
   addSaleProperty,
   getSaleProperties,
   updateSalePropertyStatus,
-  deleteSaleProperty
-} from './firestore';
+  deleteSaleProperty,
+} from "./firestore";
 
 // Storage utilities
 export {
@@ -59,11 +59,11 @@ export {
   deleteFile,
   deletePropertyFiles,
   getFileURL,
-  listFiles
-} from './storage';
+  listFiles,
+} from "./storage";
 // Firebase services for direct access
 export const firebaseServices = {
   auth,
   db,
-  storage
+  storage,
 };

@@ -17,7 +17,12 @@ import {
   Star,
   Waves,
 } from "lucide-react";
-import { FaWhatsapp, FaMapMarkerAlt, FaRulerCombined, FaTree } from "react-icons/fa";
+import {
+  FaWhatsapp,
+  FaMapMarkerAlt,
+  FaRulerCombined,
+  FaTree,
+} from "react-icons/fa";
 import { getAllPortfolioItems } from "../../firebase/firestore";
 
 const SoldPropertyDetail = () => {
@@ -36,21 +41,21 @@ const SoldPropertyDetail = () => {
     const fetchSoldProperty = async () => {
       try {
         setLoading(true);
-        
+
         // Fetch all recent-sale properties
-        const result = await getAllPortfolioItems({ status: 'recent-sale' });
+        const result = await getAllPortfolioItems({ status: "recent-sale" });
         if (result.success) {
-          const property = result.data.find(p => p.id === id);
+          const property = result.data.find((p) => p.id === id);
           if (property) {
             setSoldProperty(property);
           } else {
-            setError('Sold property not found');
+            setError("Sold property not found");
           }
         } else {
-          setError(result.error || 'Failed to fetch sold properties');
+          setError(result.error || "Failed to fetch sold properties");
         }
       } catch (err) {
-        setError('Error fetching sold property: ' + err.message);
+        setError("Error fetching sold property: " + err.message);
       } finally {
         setLoading(false);
       }
@@ -67,7 +72,9 @@ const SoldPropertyDetail = () => {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600 text-lg">Loading sold property details...</p>
+          <p className="text-gray-600 text-lg">
+            Loading sold property details...
+          </p>
         </div>
       </div>
     );
@@ -81,14 +88,14 @@ const SoldPropertyDetail = () => {
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
             <p>Error: {error}</p>
           </div>
-          <button 
-            onClick={() => navigate('/properties')}
+          <button
+            onClick={() => navigate("/properties")}
             className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mr-2"
           >
             Back to Properties
           </button>
-          <button 
-            onClick={() => window.location.reload()} 
+          <button
+            onClick={() => window.location.reload()}
             className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
           >
             Retry
@@ -103,38 +110,53 @@ const SoldPropertyDetail = () => {
 
   // Helper function to get location display
   const getLocationDisplay = (loc) => {
-    if (typeof loc === 'string') return loc;
+    if (typeof loc === "string") return loc;
     if (loc && loc.address) return loc.address;
-    return 'St. John, USVI';
+    return "St. John, USVI";
   };
 
   // Check if property details section has meaningful data
   const hasPropertyDetails = () => {
     const mls = property?.highlights?.mls || property?.mls;
-    const quarter = property?.highlights?.quarter || property?.location?.quarter;
+    const quarter =
+      property?.highlights?.quarter || property?.location?.quarter;
     const estate = property?.highlights?.estate || property?.estate;
-    const yearBuilt = (property?.highlights?.yearBuilt || property?.yearBuilt) > 0;
-    const totalSqFt = (property?.highlights?.totalSqFt || property?.features?.sqft) > 0;
-    const approxIntSqft = (property?.highlights?.approxIntSqft) > 0;
-    
+    const yearBuilt =
+      (property?.highlights?.yearBuilt || property?.yearBuilt) > 0;
+    const totalSqFt =
+      (property?.highlights?.totalSqFt || property?.features?.sqft) > 0;
+    const approxIntSqft = property?.highlights?.approxIntSqft > 0;
+
     return mls || quarter || estate || yearBuilt || totalSqFt || approxIntSqft;
   };
 
   // Check if additional info section has meaningful data
   const hasAdditionalInfo = () => {
-    const zoning = property?.additionalInfo?.zoning || property?.details?.zoning;
+    const zoning =
+      property?.additionalInfo?.zoning || property?.details?.zoning;
     const grade = property?.additionalInfo?.grade || property?.overview?.grade;
-    const waterfront = property?.additionalInfo?.waterfront || property?.details?.waterfront;
-    const intendedUse = property?.additionalInfo?.intendedUse || property?.details?.intendedUse;
+    const waterfront =
+      property?.additionalInfo?.waterfront || property?.details?.waterfront;
+    const intendedUse =
+      property?.additionalInfo?.intendedUse || property?.details?.intendedUse;
     const sewer = property?.additionalInfo?.sewer || property?.details?.sewer;
-    const condition = property?.additionalInfo?.condition || property?.details?.condition;
-    const builder = property?.additionalInfo?.builderName || property?.details?.builderName;
-    const construction = property?.additionalInfo?.construction || property?.details?.construction;
-    const foundation = property?.additionalInfo?.foundation || property?.details?.foundation;
-    const deckSqFt = (property?.additionalInfo?.deckSqFt || 0) > 0 || (property?.details?.deckSqFt || 0) > 0;
-    const insurance = property?.additionalInfo?.insurance || property?.details?.insurance;
-    const roadAssessment = property?.additionalInfo?.roadAssessmentYear || property?.details?.roadAssessmentYear;
-    
+    const condition =
+      property?.additionalInfo?.condition || property?.details?.condition;
+    const builder =
+      property?.additionalInfo?.builderName || property?.details?.builderName;
+    const construction =
+      property?.additionalInfo?.construction || property?.details?.construction;
+    const foundation =
+      property?.additionalInfo?.foundation || property?.details?.foundation;
+    const deckSqFt =
+      (property?.additionalInfo?.deckSqFt || 0) > 0 ||
+      (property?.details?.deckSqFt || 0) > 0;
+    const insurance =
+      property?.additionalInfo?.insurance || property?.details?.insurance;
+    const roadAssessment =
+      property?.additionalInfo?.roadAssessmentYear ||
+      property?.details?.roadAssessmentYear;
+
     // Check if any value is not "N/A" and not empty
     return (
       (zoning && zoning !== "N/A") ||
@@ -175,18 +197,14 @@ const SoldPropertyDetail = () => {
   // Navigation functions
   const nextImage = () => {
     if (property && property.images) {
-      setCurrentImageIndex(
-        (prev) => (prev + 1) % property.images.length
-      );
+      setCurrentImageIndex((prev) => (prev + 1) % property.images.length);
     }
   };
 
   const prevImage = () => {
     if (property && property.images) {
       setCurrentImageIndex(
-        (prev) =>
-          (prev - 1 + property.images.length) %
-          property.images.length
+        (prev) => (prev - 1 + property.images.length) % property.images.length
       );
     }
   };
@@ -375,19 +393,24 @@ const SoldPropertyDetail = () => {
 
                   {/* Features */}
                   <div className="flex flex-wrap gap-6">
-                    {(property.features?.beds || property.highlights?.beds) > 0 && (
+                    {(property.features?.beds || property.highlights?.beds) >
+                      0 && (
                       <div className="flex items-center gap-2">
                         <Bed className="text-blue-600" size={20} />
                         <span className="font-medium">
-                          {property.features?.beds || property.highlights?.beds} Beds
+                          {property.features?.beds || property.highlights?.beds}{" "}
+                          Beds
                         </span>
                       </div>
                     )}
-                    {(property.features?.baths || property.highlights?.baths) > 0 && (
+                    {(property.features?.baths || property.highlights?.baths) >
+                      0 && (
                       <div className="flex items-center gap-2">
                         <Bath className="text-blue-600" size={20} />
                         <span className="font-medium">
-                          {property.features?.baths || property.highlights?.baths} Baths
+                          {property.features?.baths ||
+                            property.highlights?.baths}{" "}
+                          Baths
                         </span>
                       </div>
                     )}
@@ -395,15 +418,19 @@ const SoldPropertyDetail = () => {
                       <div className="flex items-center gap-2">
                         <Home className="text-blue-600" size={20} />
                         <span className="font-medium">
-                          {property.features?.sqft || property.highlights?.sqft} Sqft
+                          {property.features?.sqft || property.highlights?.sqft}{" "}
+                          Sqft
                         </span>
                       </div>
                     )}
-                    {(property.highlights?.acreage || property.highlights?.acres) > 0 && (
+                    {(property.highlights?.acreage ||
+                      property.highlights?.acres) > 0 && (
                       <div className="flex items-center gap-2">
                         <FaRulerCombined className="text-blue-600" size={20} />
                         <span className="font-medium">
-                          {property.highlights?.acreage || property.highlights?.acres} Acres
+                          {property.highlights?.acreage ||
+                            property.highlights?.acres}{" "}
+                          Acres
                         </span>
                       </div>
                     )}
@@ -433,30 +460,33 @@ const SoldPropertyDetail = () => {
                           </span>
                         </div>
                       )}
-                      {property?.features?.acFans && property.features.acFans !== "N/A" && (
-                        <div className="flex items-center gap-2">
-                          <Building className="text-blue-600" size={16} />
-                          <span className="text-gray-700">
-                            AC/Fans: {property.features.acFans}
-                          </span>
-                        </div>
-                      )}
-                      {property?.features?.cistern && property.features.cistern !== "N/A" && (
-                        <div className="flex items-center gap-2">
-                          <Droplets className="text-blue-600" size={16} />
-                          <span className="text-gray-700">
-                            Cistern: {property.features.cistern}
-                          </span>
-                        </div>
-                      )}
-                      {property?.features?.roof && property.features.roof !== "N/A" && (
-                        <div className="flex items-center gap-2">
-                          <Home className="text-gray-600" size={16} />
-                          <span className="text-gray-700">
-                            Roof: {property.features.roof}
-                          </span>
-                        </div>
-                      )}
+                      {property?.features?.acFans &&
+                        property.features.acFans !== "N/A" && (
+                          <div className="flex items-center gap-2">
+                            <Building className="text-blue-600" size={16} />
+                            <span className="text-gray-700">
+                              AC/Fans: {property.features.acFans}
+                            </span>
+                          </div>
+                        )}
+                      {property?.features?.cistern &&
+                        property.features.cistern !== "N/A" && (
+                          <div className="flex items-center gap-2">
+                            <Droplets className="text-blue-600" size={16} />
+                            <span className="text-gray-700">
+                              Cistern: {property.features.cistern}
+                            </span>
+                          </div>
+                        )}
+                      {property?.features?.roof &&
+                        property.features.roof !== "N/A" && (
+                          <div className="flex items-center gap-2">
+                            <Home className="text-gray-600" size={16} />
+                            <span className="text-gray-700">
+                              Roof: {property.features.roof}
+                            </span>
+                          </div>
+                        )}
                     </div>
                   </div>
 
@@ -468,22 +498,46 @@ const SoldPropertyDetail = () => {
                       </h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                         {(property?.highlights?.mls || property?.mls) && (
-                          <div><strong>MLS #:</strong> {property?.highlights?.mls || property?.mls}</div>
+                          <div>
+                            <strong>MLS #:</strong>{" "}
+                            {property?.highlights?.mls || property?.mls}
+                          </div>
                         )}
-                        {(property?.highlights?.quarter || property?.location?.quarter) && (
-                          <div><strong>Quarter:</strong> {property?.highlights?.quarter || property?.location?.quarter}</div>
+                        {(property?.highlights?.quarter ||
+                          property?.location?.quarter) && (
+                          <div>
+                            <strong>Quarter:</strong>{" "}
+                            {property?.highlights?.quarter ||
+                              property?.location?.quarter}
+                          </div>
                         )}
                         {(property?.highlights?.estate || property?.estate) && (
-                          <div><strong>Estate:</strong> {property?.highlights?.estate || property?.estate}</div>
+                          <div>
+                            <strong>Estate:</strong>{" "}
+                            {property?.highlights?.estate || property?.estate}
+                          </div>
                         )}
-                        {(property?.highlights?.yearBuilt || property?.yearBuilt) > 0 && (
-                          <div><strong>Year Built:</strong> {property?.highlights?.yearBuilt || property?.yearBuilt}</div>
+                        {(property?.highlights?.yearBuilt ||
+                          property?.yearBuilt) > 0 && (
+                          <div>
+                            <strong>Year Built:</strong>{" "}
+                            {property?.highlights?.yearBuilt ||
+                              property?.yearBuilt}
+                          </div>
                         )}
-                        {(property?.highlights?.totalSqFt || property?.features?.sqft) > 0 && (
-                          <div><strong>Total SqFt:</strong> {property?.highlights?.totalSqFt || property?.features?.sqft}</div>
+                        {(property?.highlights?.totalSqFt ||
+                          property?.features?.sqft) > 0 && (
+                          <div>
+                            <strong>Total SqFt:</strong>{" "}
+                            {property?.highlights?.totalSqFt ||
+                              property?.features?.sqft}
+                          </div>
                         )}
-                        {(property?.highlights?.approxIntSqft) > 0 && (
-                          <div><strong>Interior SqFt:</strong> {property?.highlights?.approxIntSqft}</div>
+                        {property?.highlights?.approxIntSqft > 0 && (
+                          <div>
+                            <strong>Interior SqFt:</strong>{" "}
+                            {property?.highlights?.approxIntSqft}
+                          </div>
                         )}
                       </div>
                     </div>
@@ -496,42 +550,126 @@ const SoldPropertyDetail = () => {
                         Additional Information
                       </h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                        {(property?.additionalInfo?.zoning || property?.details?.zoning) && (property?.additionalInfo?.zoning !== "N/A" || property?.details?.zoning !== "N/A") && (
-                          <div><strong>Zoning:</strong> {property?.additionalInfo?.zoning || property?.details?.zoning}</div>
+                        {(property?.additionalInfo?.zoning ||
+                          property?.details?.zoning) &&
+                          (property?.additionalInfo?.zoning !== "N/A" ||
+                            property?.details?.zoning !== "N/A") && (
+                            <div>
+                              <strong>Zoning:</strong>{" "}
+                              {property?.additionalInfo?.zoning ||
+                                property?.details?.zoning}
+                            </div>
+                          )}
+                        {(property?.additionalInfo?.grade ||
+                          property?.overview?.grade) &&
+                          (property?.additionalInfo?.grade !== "N/A" ||
+                            property?.overview?.grade !== "N/A") && (
+                            <div>
+                              <strong>Grade:</strong>{" "}
+                              {property?.additionalInfo?.grade ||
+                                property?.overview?.grade}
+                            </div>
+                          )}
+                        {(property?.additionalInfo?.waterfront ||
+                          property?.details?.waterfront) &&
+                          (property?.additionalInfo?.waterfront !== "N/A" ||
+                            property?.details?.waterfront !== "N/A") && (
+                            <div>
+                              <strong>Waterfront:</strong>{" "}
+                              {property?.additionalInfo?.waterfront ||
+                                property?.details?.waterfront}
+                            </div>
+                          )}
+                        {(property?.additionalInfo?.intendedUse ||
+                          property?.details?.intendedUse) &&
+                          (property?.additionalInfo?.intendedUse !== "N/A" ||
+                            property?.details?.intendedUse !== "N/A") && (
+                            <div>
+                              <strong>Intended Use:</strong>{" "}
+                              {property?.additionalInfo?.intendedUse ||
+                                property?.details?.intendedUse}
+                            </div>
+                          )}
+                        {(property?.additionalInfo?.sewer ||
+                          property?.details?.sewer) &&
+                          (property?.additionalInfo?.sewer !== "N/A" ||
+                            property?.details?.sewer !== "N/A") && (
+                            <div>
+                              <strong>Sewer:</strong>{" "}
+                              {property?.additionalInfo?.sewer ||
+                                property?.details?.sewer}
+                            </div>
+                          )}
+                        {(property?.additionalInfo?.condition ||
+                          property?.details?.condition) &&
+                          (property?.additionalInfo?.condition !== "N/A" ||
+                            property?.details?.condition !== "N/A") && (
+                            <div>
+                              <strong>Condition:</strong>{" "}
+                              {property?.additionalInfo?.condition ||
+                                property?.details?.condition}
+                            </div>
+                          )}
+                        {(property?.additionalInfo?.builderName ||
+                          property?.details?.builderName) &&
+                          (property?.additionalInfo?.builderName !== "N/A" ||
+                            property?.details?.builderName !== "N/A") && (
+                            <div>
+                              <strong>Builder:</strong>{" "}
+                              {property?.additionalInfo?.builderName ||
+                                property?.details?.builderName}
+                            </div>
+                          )}
+                        {(property?.additionalInfo?.construction ||
+                          property?.details?.construction) &&
+                          (property?.additionalInfo?.construction !== "N/A" ||
+                            property?.details?.construction !== "N/A") && (
+                            <div>
+                              <strong>Construction:</strong>{" "}
+                              {property?.additionalInfo?.construction ||
+                                property?.details?.construction}
+                            </div>
+                          )}
+                        {(property?.additionalInfo?.foundation ||
+                          property?.details?.foundation) &&
+                          (property?.additionalInfo?.foundation !== "N/A" ||
+                            property?.details?.foundation !== "N/A") && (
+                            <div>
+                              <strong>Foundation:</strong>{" "}
+                              {property?.additionalInfo?.foundation ||
+                                property?.details?.foundation}
+                            </div>
+                          )}
+                        {((property?.additionalInfo?.deckSqFt || 0) > 0 ||
+                          (property?.details?.deckSqFt || 0) > 0) && (
+                          <div>
+                            <strong>Deck SqFt:</strong>{" "}
+                            {property?.additionalInfo?.deckSqFt ||
+                              property?.details?.deckSqFt}
+                          </div>
                         )}
-                        {(property?.additionalInfo?.grade || property?.overview?.grade) && (property?.additionalInfo?.grade !== "N/A" || property?.overview?.grade !== "N/A") && (
-                          <div><strong>Grade:</strong> {property?.additionalInfo?.grade || property?.overview?.grade}</div>
-                        )}
-                        {(property?.additionalInfo?.waterfront || property?.details?.waterfront) && (property?.additionalInfo?.waterfront !== "N/A" || property?.details?.waterfront !== "N/A") && (
-                          <div><strong>Waterfront:</strong> {property?.additionalInfo?.waterfront || property?.details?.waterfront}</div>
-                        )}
-                        {(property?.additionalInfo?.intendedUse || property?.details?.intendedUse) && (property?.additionalInfo?.intendedUse !== "N/A" || property?.details?.intendedUse !== "N/A") && (
-                          <div><strong>Intended Use:</strong> {property?.additionalInfo?.intendedUse || property?.details?.intendedUse}</div>
-                        )}
-                        {(property?.additionalInfo?.sewer || property?.details?.sewer) && (property?.additionalInfo?.sewer !== "N/A" || property?.details?.sewer !== "N/A") && (
-                          <div><strong>Sewer:</strong> {property?.additionalInfo?.sewer || property?.details?.sewer}</div>
-                        )}
-                        {(property?.additionalInfo?.condition || property?.details?.condition) && (property?.additionalInfo?.condition !== "N/A" || property?.details?.condition !== "N/A") && (
-                          <div><strong>Condition:</strong> {property?.additionalInfo?.condition || property?.details?.condition}</div>
-                        )}
-                        {(property?.additionalInfo?.builderName || property?.details?.builderName) && (property?.additionalInfo?.builderName !== "N/A" || property?.details?.builderName !== "N/A") && (
-                          <div><strong>Builder:</strong> {property?.additionalInfo?.builderName || property?.details?.builderName}</div>
-                        )}
-                        {(property?.additionalInfo?.construction || property?.details?.construction) && (property?.additionalInfo?.construction !== "N/A" || property?.details?.construction !== "N/A") && (
-                          <div><strong>Construction:</strong> {property?.additionalInfo?.construction || property?.details?.construction}</div>
-                        )}
-                        {(property?.additionalInfo?.foundation || property?.details?.foundation) && (property?.additionalInfo?.foundation !== "N/A" || property?.details?.foundation !== "N/A") && (
-                          <div><strong>Foundation:</strong> {property?.additionalInfo?.foundation || property?.details?.foundation}</div>
-                        )}
-                        {((property?.additionalInfo?.deckSqFt || 0) > 0 || (property?.details?.deckSqFt || 0) > 0) && (
-                          <div><strong>Deck SqFt:</strong> {property?.additionalInfo?.deckSqFt || property?.details?.deckSqFt}</div>
-                        )}
-                        {(property?.additionalInfo?.insurance || property?.details?.insurance) && (property?.additionalInfo?.insurance !== "N/A" || property?.details?.insurance !== "N/A") && (
-                          <div><strong>Insurance:</strong> {property?.additionalInfo?.insurance || property?.details?.insurance}</div>
-                        )}
-                        {(property?.additionalInfo?.roadAssessmentYear || property?.details?.roadAssessmentYear) && (property?.additionalInfo?.roadAssessmentYear !== "N/A" || property?.details?.roadAssessmentYear !== "N/A") && (
-                          <div><strong>Road Assessment:</strong> {property?.additionalInfo?.roadAssessmentYear || property?.details?.roadAssessmentYear}</div>
-                        )}
+                        {(property?.additionalInfo?.insurance ||
+                          property?.details?.insurance) &&
+                          (property?.additionalInfo?.insurance !== "N/A" ||
+                            property?.details?.insurance !== "N/A") && (
+                            <div>
+                              <strong>Insurance:</strong>{" "}
+                              {property?.additionalInfo?.insurance ||
+                                property?.details?.insurance}
+                            </div>
+                          )}
+                        {(property?.additionalInfo?.roadAssessmentYear ||
+                          property?.details?.roadAssessmentYear) &&
+                          (property?.additionalInfo?.roadAssessmentYear !==
+                            "N/A" ||
+                            property?.details?.roadAssessmentYear !==
+                              "N/A") && (
+                            <div>
+                              <strong>Road Assessment:</strong>{" "}
+                              {property?.additionalInfo?.roadAssessmentYear ||
+                                property?.details?.roadAssessmentYear}
+                            </div>
+                          )}
                       </div>
                     </div>
                   )}

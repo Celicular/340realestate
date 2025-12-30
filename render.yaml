@@ -4,10 +4,10 @@ services:
     runtime: node
     region: ohio
     plan: starter
-    
+
     buildCommand: npm install && npm run build
-    startCommand: npm start
-    
+    startCommand: node server.js
+
     envVars:
       - key: NODE_ENV
         value: production
@@ -29,7 +29,5 @@ services:
         sync: false
       - key: REACT_APP_SUPABASE_ANON_KEY
         sync: false
-    
-    staticPublishPath: build
-    
+
     healthCheckPath: /

@@ -63,56 +63,56 @@ const PropertySold = () => {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const addImageLink = () => {
     if (imageLink.trim()) {
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
-        imageLinks: [...(prev.imageLinks || []), imageLink.trim()]
+        imageLinks: [...(prev.imageLinks || []), imageLink.trim()],
       }));
-      setImageLink('');
+      setImageLink("");
     }
   };
 
   const removeImageLink = (index) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      imageLinks: prev.imageLinks.filter((_, i) => i !== index)
+      imageLinks: prev.imageLinks.filter((_, i) => i !== index),
     }));
   };
 
   const handleFileSelect = (e) => {
     const files = Array.from(e.target.files);
-    setSelectedFiles(prev => [...prev, ...files]);
+    setSelectedFiles((prev) => [...prev, ...files]);
   };
 
   const removeFile = (index) => {
-    setSelectedFiles(prev => prev.filter((_, i) => i !== index));
+    setSelectedFiles((prev) => prev.filter((_, i) => i !== index));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitMessage({ type: '', text: '' });
+    setSubmitMessage({ type: "", text: "" });
 
     try {
       // Get agent info from localStorage
-      const agentEmail = localStorage.getItem('userEmail');
-      const agentRole = localStorage.getItem('userRole');
-      
+      const agentEmail = localStorage.getItem("userEmail");
+      const agentRole = localStorage.getItem("userRole");
+
       // Get agent name or use email prefix as fallback
-      let agentName = localStorage.getItem('userName');
+      let agentName = localStorage.getItem("userName");
       if (!agentName) {
-        agentName = agentEmail ? agentEmail.split('@')[0] : 'Agent';
+        agentName = agentEmail ? agentEmail.split("@")[0] : "Agent";
       }
 
       if (!agentEmail || !agentRole) {
-        throw new Error('Agent information not found. Please login again.');
+        throw new Error("Agent information not found. Please login again.");
       }
 
       // Prepare data for Firebase
@@ -124,7 +124,7 @@ const PropertySold = () => {
           slug: generateSlug(formData.title),
           location: formData.location,
           price: formData.price,
-          status: formData.status
+          status: formData.status,
         },
         highlights: {
           beds: parseInt(formData.beds) || 0,
@@ -167,43 +167,77 @@ const PropertySold = () => {
           waterfront: formData.waterfront,
         },
         media: {
-          imageFiles: selectedFiles.map(file => ({ name: file.name, size: file.size })),
-          imageLinks: formData.imageLinks || []
+          imageFiles: selectedFiles.map((file) => ({
+            name: file.name,
+            size: file.size,
+          })),
+          imageLinks: formData.imageLinks || [],
         },
-        description: formData.description
+        description: formData.description,
       };
 
       // Submit to Firebase
-      console.log('Submitting sold property to Firebase:', soldData);
+      console.log("Submitting sold property to Firebase:", soldData);
       const result = await addPortfolioItem(soldData);
-      console.log('Sold property submission result:', result);
+      console.log("Sold property submission result:", result);
 
       if (result.success) {
         setSubmitMessage({
-          type: 'success',
-          text: `Sold property submitted successfully! ID: ${result.id}`
+          type: "success",
+          text: `Sold property submitted successfully! ID: ${result.id}`,
         });
-        
+
         // Reset form
         setFormData({
-          title: "", location: "", price: "", status: "SOLD", description: "",
-          beds: "", baths: "", sqft: "", acres: "", area: "St John", island: "St John", mls: "",
-          totalBathrooms: "", totalSqFt: "", approxIntSqft: "", estate: "", landscaping: "",
-          quarter: "", totalApproxSqFt: "", totalBedrooms: "", yearBuilt: "",
-          acFans: "", cistern: "", roof: "", appliancesUnits: "", cisternCapacity: "",
-          builderName: "", construction: "", easements: "", grade: "", intendedUse: "",
-          sewer: "", zoning: "", condition: "", deckSqFt: "", foundation: "", insurance: "",
-          roadAssessmentYear: "", waterfront: ""
+          title: "",
+          location: "",
+          price: "",
+          status: "SOLD",
+          description: "",
+          beds: "",
+          baths: "",
+          sqft: "",
+          acres: "",
+          area: "St John",
+          island: "St John",
+          mls: "",
+          totalBathrooms: "",
+          totalSqFt: "",
+          approxIntSqft: "",
+          estate: "",
+          landscaping: "",
+          quarter: "",
+          totalApproxSqFt: "",
+          totalBedrooms: "",
+          yearBuilt: "",
+          acFans: "",
+          cistern: "",
+          roof: "",
+          appliancesUnits: "",
+          cisternCapacity: "",
+          builderName: "",
+          construction: "",
+          easements: "",
+          grade: "",
+          intendedUse: "",
+          sewer: "",
+          zoning: "",
+          condition: "",
+          deckSqFt: "",
+          foundation: "",
+          insurance: "",
+          roadAssessmentYear: "",
+          waterfront: "",
         });
         setSelectedFiles([]);
-        setImageLink('');
+        setImageLink("");
       } else {
         throw new Error(result.error);
       }
     } catch (error) {
       setSubmitMessage({
-        type: 'error',
-        text: `Submission failed: ${error.message}`
+        type: "error",
+        text: `Submission failed: ${error.message}`,
       });
     } finally {
       setIsSubmitting(false);
@@ -214,15 +248,21 @@ const PropertySold = () => {
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-4xl mx-auto">
         <div className="p-6">
-          <h2 className="text-2xl font-bold text-brand-dark mb-6">Sold Property Form</h2>
-          
+          <h2 className="text-2xl font-bold text-brand-dark mb-6">
+            Sold Property Form
+          </h2>
+
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Basic Information */}
             <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                Basic Information
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Property Title</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Property Title
+                  </label>
                   <input
                     type="text"
                     name="title"
@@ -234,7 +274,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Location</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Location
+                  </label>
                   <input
                     type="text"
                     name="location"
@@ -247,7 +289,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Sold Price ($)</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Sold Price ($)
+                  </label>
                   <input
                     type="text"
                     name="price"
@@ -260,7 +304,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">MLS Number</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    MLS Number
+                  </label>
                   <input
                     type="text"
                     name="mls"
@@ -271,9 +317,11 @@ const PropertySold = () => {
                   />
                 </div>
               </div>
-              
+
               <div className="mt-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Description
+                </label>
                 <textarea
                   name="description"
                   value={formData.description}
@@ -287,10 +335,14 @@ const PropertySold = () => {
 
             {/* Property Highlights */}
             <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Property Highlights</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                Property Highlights
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Bedrooms</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Bedrooms
+                  </label>
                   <input
                     type="number"
                     name="beds"
@@ -301,7 +353,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Bathrooms</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Bathrooms
+                  </label>
                   <input
                     type="number"
                     name="baths"
@@ -313,7 +367,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Square Feet</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Square Feet
+                  </label>
                   <input
                     type="number"
                     name="sqft"
@@ -324,7 +380,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Acres</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Acres
+                  </label>
                   <input
                     type="number"
                     name="acres"
@@ -336,7 +394,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Year Built</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Year Built
+                  </label>
                   <input
                     type="number"
                     name="yearBuilt"
@@ -347,7 +407,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Quarter</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Quarter
+                  </label>
                   <input
                     type="text"
                     name="quarter"
@@ -359,7 +421,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Estate</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Estate
+                  </label>
                   <input
                     type="text"
                     name="estate"
@@ -370,7 +434,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Landscaping</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Landscaping
+                  </label>
                   <input
                     type="text"
                     name="landscaping"
@@ -382,7 +448,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Total Bathrooms</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Total Bathrooms
+                  </label>
                   <input
                     type="number"
                     name="totalBathrooms"
@@ -394,7 +462,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Total Bedrooms</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Total Bedrooms
+                  </label>
                   <input
                     type="number"
                     name="totalBedrooms"
@@ -405,7 +475,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Total Square Feet</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Total Square Feet
+                  </label>
                   <input
                     type="number"
                     name="totalSqFt"
@@ -416,7 +488,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Approx Interior Sq Ft</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Approx Interior Sq Ft
+                  </label>
                   <input
                     type="number"
                     name="approxIntSqft"
@@ -427,7 +501,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Total Approx Sq Ft</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Total Approx Sq Ft
+                  </label>
                   <input
                     type="number"
                     name="totalApproxSqFt"
@@ -441,10 +517,14 @@ const PropertySold = () => {
 
             {/* Property Features */}
             <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Property Features</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                Property Features
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">AC Fans</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    AC Fans
+                  </label>
                   <input
                     type="text"
                     name="acFans"
@@ -456,7 +536,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Cistern</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Cistern
+                  </label>
                   <input
                     type="text"
                     name="cistern"
@@ -468,7 +550,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Roof</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Roof
+                  </label>
                   <input
                     type="text"
                     name="roof"
@@ -480,7 +564,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Appliances Units</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Appliances Units
+                  </label>
                   <input
                     type="number"
                     name="appliancesUnits"
@@ -491,7 +577,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Cistern Capacity</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Cistern Capacity
+                  </label>
                   <input
                     type="text"
                     name="cisternCapacity"
@@ -506,10 +594,14 @@ const PropertySold = () => {
 
             {/* Additional Information */}
             <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Additional Information</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                Additional Information
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Builder Name</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Builder Name
+                  </label>
                   <input
                     type="text"
                     name="builderName"
@@ -521,7 +613,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Construction</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Construction
+                  </label>
                   <input
                     type="text"
                     name="construction"
@@ -533,7 +627,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Easements</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Easements
+                  </label>
                   <input
                     type="text"
                     name="easements"
@@ -545,7 +641,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Grade</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Grade
+                  </label>
                   <input
                     type="text"
                     name="grade"
@@ -557,7 +655,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Intended Use</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Intended Use
+                  </label>
                   <input
                     type="text"
                     name="intendedUse"
@@ -569,7 +669,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Sewer</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Sewer
+                  </label>
                   <input
                     type="text"
                     name="sewer"
@@ -581,7 +683,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Zoning</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Zoning
+                  </label>
                   <input
                     type="text"
                     name="zoning"
@@ -593,7 +697,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Condition</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Condition
+                  </label>
                   <input
                     type="text"
                     name="condition"
@@ -605,7 +711,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Deck Square Feet</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Deck Square Feet
+                  </label>
                   <input
                     type="number"
                     name="deckSqFt"
@@ -616,7 +724,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Foundation</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Foundation
+                  </label>
                   <input
                     type="text"
                     name="foundation"
@@ -628,7 +738,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Insurance</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Insurance
+                  </label>
                   <input
                     type="text"
                     name="insurance"
@@ -640,7 +752,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Road Assessment Year</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Road Assessment Year
+                  </label>
                   <input
                     type="text"
                     name="roadAssessmentYear"
@@ -652,7 +766,9 @@ const PropertySold = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Waterfront</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Waterfront
+                  </label>
                   <input
                     type="text"
                     name="waterfront"
@@ -667,11 +783,15 @@ const PropertySold = () => {
 
             {/* Images */}
             <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Property Images</h3>
-              
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                Property Images
+              </h3>
+
               {/* Image Upload */}
               <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Upload Images</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Upload Images
+                </label>
                 <input
                   type="file"
                   multiple
@@ -681,10 +801,15 @@ const PropertySold = () => {
                 />
                 {selectedFiles.length > 0 && (
                   <div className="mt-2">
-                    <p className="text-sm text-gray-600 mb-2">Selected files:</p>
+                    <p className="text-sm text-gray-600 mb-2">
+                      Selected files:
+                    </p>
                     <div className="space-y-1">
                       {selectedFiles.map((file, index) => (
-                        <div key={index} className="flex items-center justify-between bg-gray-50 p-2 rounded">
+                        <div
+                          key={index}
+                          className="flex items-center justify-between bg-gray-50 p-2 rounded"
+                        >
                           <span className="text-sm">{file.name}</span>
                           <button
                             type="button"
@@ -702,7 +827,9 @@ const PropertySold = () => {
 
               {/* Image Links */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Add Image Links</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Add Image Links
+                </label>
                 <div className="flex gap-2 mb-2">
                   <input
                     type="url"
@@ -722,7 +849,10 @@ const PropertySold = () => {
                 {formData.imageLinks && formData.imageLinks.length > 0 && (
                   <div className="space-y-1">
                     {formData.imageLinks.map((link, index) => (
-                      <div key={index} className="flex items-center justify-between bg-gray-50 p-2 rounded">
+                      <div
+                        key={index}
+                        className="flex items-center justify-between bg-gray-50 p-2 rounded"
+                      >
                         <span className="text-sm truncate">{link}</span>
                         <button
                           type="button"
@@ -745,17 +875,19 @@ const PropertySold = () => {
                 disabled={isSubmitting}
                 className="px-8 py-3 bg-brand-dark text-white rounded-lg hover:bg-brand-dark/90 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isSubmitting ? 'Submitting...' : 'Submit Sold Property'}
+                {isSubmitting ? "Submitting..." : "Submit Sold Property"}
               </button>
             </div>
 
             {/* Submit Message */}
             {submitMessage.text && (
-              <div className={`p-4 rounded-lg ${
-                submitMessage.type === 'success' 
-                  ? 'bg-green-100 text-green-800 border border-green-200' 
-                  : 'bg-red-100 text-red-800 border border-red-200'
-              }`}>
+              <div
+                className={`p-4 rounded-lg ${
+                  submitMessage.type === "success"
+                    ? "bg-green-100 text-green-800 border border-green-200"
+                    : "bg-red-100 text-red-800 border border-red-200"
+                }`}
+              >
                 {submitMessage.text}
               </div>
             )}

@@ -17,7 +17,12 @@ import {
   Star,
   Waves,
 } from "lucide-react";
-import { FaWhatsapp, FaMapMarkerAlt, FaRulerCombined, FaTree } from "react-icons/fa";
+import {
+  FaWhatsapp,
+  FaMapMarkerAlt,
+  FaRulerCombined,
+  FaTree,
+} from "react-icons/fa";
 import { getPortfolioItems } from "../../firebase/firestore";
 import { saveViewingRequest } from "../../firebase/firestore";
 
@@ -41,17 +46,17 @@ const LandPropertyDetail = () => {
     const fetchProperty = async () => {
       try {
         setLoading(true);
-        const result = await getPortfolioItems('land');
-        
+        const result = await getPortfolioItems("land");
+
         if (result.success) {
-          const foundProperty = result.data.find(prop => prop.id === id);
+          const foundProperty = result.data.find((prop) => prop.id === id);
           if (foundProperty) {
             setProperty(foundProperty);
           } else {
-            setError('Property not found');
+            setError("Property not found");
           }
         } else {
-          setError(result.error || 'Failed to fetch property');
+          setError(result.error || "Failed to fetch property");
         }
       } catch (err) {
         setError(err.message);
@@ -65,20 +70,20 @@ const LandPropertyDetail = () => {
     }
   }, [id]);
 
-// bookingData 
+  // bookingData
   const handleBookingSubmit = async () => {
-  const bookingData = {
-    fullName,
-    email,
-    mobile,
-    selectedDate,
-    selectedTime,
-    propertyId, // optional
-  };
+    const bookingData = {
+      fullName,
+      email,
+      mobile,
+      selectedDate,
+      selectedTime,
+      propertyId, // optional
+    };
 
-  await saveViewingRequest(bookingData);
-  setShowBookingModal(true);
-};
+    await saveViewingRequest(bookingData);
+    setShowBookingModal(true);
+  };
 
   // Agent data
   const agent = {
@@ -103,18 +108,14 @@ const LandPropertyDetail = () => {
   // Navigation functions
   const nextImage = () => {
     if (property && property.images) {
-      setCurrentImageIndex(
-        (prev) => (prev + 1) % property.images.length
-      );
+      setCurrentImageIndex((prev) => (prev + 1) % property.images.length);
     }
   };
 
   const prevImage = () => {
     if (property && property.images) {
       setCurrentImageIndex(
-        (prev) =>
-          (prev - 1 + property.images.length) %
-          property.images.length
+        (prev) => (prev - 1 + property.images.length) % property.images.length
       );
     }
   };
@@ -135,7 +136,7 @@ const LandPropertyDetail = () => {
 
   // Format price
   const formatPrice = (price) => {
-    if (typeof price === 'number') {
+    if (typeof price === "number") {
       return `$${price.toLocaleString()}`;
     }
     return price;
@@ -143,13 +144,13 @@ const LandPropertyDetail = () => {
 
   // Get location display
   const getLocationDisplay = (location) => {
-    if (typeof location === 'string') {
+    if (typeof location === "string") {
       return location;
     }
     if (location && location.address) {
       return location.address;
     }
-    return 'Location not specified';
+    return "Location not specified";
   };
 
   // Loading state
@@ -158,7 +159,9 @@ const LandPropertyDetail = () => {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Loading Property...</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            Loading Property...
+          </h2>
         </div>
       </div>
     );
@@ -352,14 +355,18 @@ const LandPropertyDetail = () => {
 
                   {/* Features */}
                   <div className="flex flex-wrap gap-6">
-                    {property.overview && property.overview.lotSizeAcres > 0 && (
-                      <div className="flex items-center gap-2">
-                        <FaRulerCombined className="text-blue-600" size={20} />
-                        <span className="font-medium">
-                          {property.overview.lotSizeAcres} Acres
-                        </span>
-                      </div>
-                    )}
+                    {property.overview &&
+                      property.overview.lotSizeAcres > 0 && (
+                        <div className="flex items-center gap-2">
+                          <FaRulerCombined
+                            className="text-blue-600"
+                            size={20}
+                          />
+                          <span className="font-medium">
+                            {property.overview.lotSizeAcres} Acres
+                          </span>
+                        </div>
+                      )}
                     {property.overview && property.overview.grade && (
                       <div className="flex items-center gap-2">
                         <FaTree className="text-green-600" size={20} />
@@ -376,12 +383,13 @@ const LandPropertyDetail = () => {
                         </span>
                       </div>
                     )}
-                    {property.details && property.details.waterfront === "Y" && (
-                      <div className="flex items-center gap-2">
-                        <Waves className="text-blue-600" size={20} />
-                        <span className="font-medium">Waterfront</span>
-                      </div>
-                    )}
+                    {property.details &&
+                      property.details.waterfront === "Y" && (
+                        <div className="flex items-center gap-2">
+                          <Waves className="text-blue-600" size={20} />
+                          <span className="font-medium">Waterfront</span>
+                        </div>
+                      )}
                   </div>
 
                   {/* Description */}
@@ -408,14 +416,16 @@ const LandPropertyDetail = () => {
                           </span>
                         </div>
                       )}
-                      {property.details && property.details.improvements && property.details.improvements !== "N/A" && (
-                        <div className="flex items-center gap-2">
-                          <Home className="text-blue-600" size={16} />
-                          <span className="text-gray-700">
-                            Improvements: {property.details.improvements}
-                          </span>
-                        </div>
-                      )}
+                      {property.details &&
+                        property.details.improvements &&
+                        property.details.improvements !== "N/A" && (
+                          <div className="flex items-center gap-2">
+                            <Home className="text-blue-600" size={16} />
+                            <span className="text-gray-700">
+                              Improvements: {property.details.improvements}
+                            </span>
+                          </div>
+                        )}
                       {property.overview && property.overview.grade && (
                         <div className="flex items-center gap-2">
                           <Ruler className="text-blue-600" size={16} />
@@ -441,23 +451,59 @@ const LandPropertyDetail = () => {
                       Land Details
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                      {property.mls && <div><strong>MLS #:</strong> {property.mls}</div>}
-                      {property.status && <div><strong>Status:</strong> {property.status}</div>}
-                      {property.location && property.location.quarter && <div><strong>Quarter:</strong> {property.location.quarter}</div>}
-                      {property.location && property.location.subdivision && <div><strong>Subdivision:</strong> {property.location.subdivision}</div>}
-                      {property.location && property.location.country && <div><strong>Country:</strong> {property.location.country}</div>}
-                      {property.overview && property.overview.lotSizeAcres > 0 && (
-                        <div><strong>Acres:</strong> {property.overview.lotSizeAcres}</div>
+                      {property.mls && (
+                        <div>
+                          <strong>MLS #:</strong> {property.mls}
+                        </div>
                       )}
-                      {property.overview && property.overview.lotSizeSqFt > 0 && (
-                        <div><strong>Lot Size SqFt:</strong> {property.overview.lotSizeSqFt}</div>
+                      {property.status && (
+                        <div>
+                          <strong>Status:</strong> {property.status}
+                        </div>
                       )}
-                      {property.overview && property.overview.hurricaneDamaged && (
-                        <div><strong>Hurricane Damaged:</strong> Yes</div>
+                      {property.location && property.location.quarter && (
+                        <div>
+                          <strong>Quarter:</strong> {property.location.quarter}
+                        </div>
                       )}
-                      {property.overview && property.overview.hurricaneDamageSource && (
-                        <div><strong>Damage Source:</strong> {property.overview.hurricaneDamageSource}</div>
+                      {property.location && property.location.subdivision && (
+                        <div>
+                          <strong>Subdivision:</strong>{" "}
+                          {property.location.subdivision}
+                        </div>
                       )}
+                      {property.location && property.location.country && (
+                        <div>
+                          <strong>Country:</strong> {property.location.country}
+                        </div>
+                      )}
+                      {property.overview &&
+                        property.overview.lotSizeAcres > 0 && (
+                          <div>
+                            <strong>Acres:</strong>{" "}
+                            {property.overview.lotSizeAcres}
+                          </div>
+                        )}
+                      {property.overview &&
+                        property.overview.lotSizeSqFt > 0 && (
+                          <div>
+                            <strong>Lot Size SqFt:</strong>{" "}
+                            {property.overview.lotSizeSqFt}
+                          </div>
+                        )}
+                      {property.overview &&
+                        property.overview.hurricaneDamaged && (
+                          <div>
+                            <strong>Hurricane Damaged:</strong> Yes
+                          </div>
+                        )}
+                      {property.overview &&
+                        property.overview.hurricaneDamageSource && (
+                          <div>
+                            <strong>Damage Source:</strong>{" "}
+                            {property.overview.hurricaneDamageSource}
+                          </div>
+                        )}
                     </div>
                   </div>
 
@@ -467,39 +513,107 @@ const LandPropertyDetail = () => {
                       Additional Information
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                      {property.details && property.details.zoning && <div><strong>Zoning:</strong> {property.details.zoning}</div>}
-                      {property.overview && property.overview.grade && <div><strong>Grade:</strong> {property.overview.grade}</div>}
-                      {property.details && property.details.waterfront && <div><strong>Waterfront:</strong> {property.details.waterfront}</div>}
-                      {property.details && property.details.intendedUse && <div><strong>Intended Use:</strong> {property.details.intendedUse}</div>}
-                      {property.details && property.details.financing && <div><strong>Financing:</strong> {property.details.financing}</div>}
-                      {property.details && property.details.stampTax && <div><strong>Stamp Tax:</strong> {property.details.stampTax}</div>}
-                      {property.details && property.details.easements && <div><strong>Easements:</strong> {property.details.easements}</div>}
-                      {property.details && property.details.access && <div><strong>Access:</strong> {property.details.access}</div>}
-                      {property.details && property.details.restrictions && <div><strong>Restrictions:</strong> {property.details.restrictions}</div>}
-                      {property.details && property.details.hoaDues !== undefined && <div><strong>HOA Dues:</strong> {property.details.hoaDues === 0 ? "None" : `$${property.details.hoaDues}`}</div>}
-                      {property.details && property.details.assocFee !== undefined && <div><strong>Association Fee:</strong> {property.details.assocFee === 0 ? "None" : `$${property.details.assocFee}`}</div>}
-                      {property.details && property.details.roadAssessment !== undefined && <div><strong>Road Assessment:</strong> {property.details.roadAssessment === 0 ? "None" : `$${property.details.roadAssessment}`}</div>}
+                      {property.details && property.details.zoning && (
+                        <div>
+                          <strong>Zoning:</strong> {property.details.zoning}
+                        </div>
+                      )}
+                      {property.overview && property.overview.grade && (
+                        <div>
+                          <strong>Grade:</strong> {property.overview.grade}
+                        </div>
+                      )}
+                      {property.details && property.details.waterfront && (
+                        <div>
+                          <strong>Waterfront:</strong>{" "}
+                          {property.details.waterfront}
+                        </div>
+                      )}
+                      {property.details && property.details.intendedUse && (
+                        <div>
+                          <strong>Intended Use:</strong>{" "}
+                          {property.details.intendedUse}
+                        </div>
+                      )}
+                      {property.details && property.details.financing && (
+                        <div>
+                          <strong>Financing:</strong>{" "}
+                          {property.details.financing}
+                        </div>
+                      )}
+                      {property.details && property.details.stampTax && (
+                        <div>
+                          <strong>Stamp Tax:</strong>{" "}
+                          {property.details.stampTax}
+                        </div>
+                      )}
+                      {property.details && property.details.easements && (
+                        <div>
+                          <strong>Easements:</strong>{" "}
+                          {property.details.easements}
+                        </div>
+                      )}
+                      {property.details && property.details.access && (
+                        <div>
+                          <strong>Access:</strong> {property.details.access}
+                        </div>
+                      )}
+                      {property.details && property.details.restrictions && (
+                        <div>
+                          <strong>Restrictions:</strong>{" "}
+                          {property.details.restrictions}
+                        </div>
+                      )}
+                      {property.details &&
+                        property.details.hoaDues !== undefined && (
+                          <div>
+                            <strong>HOA Dues:</strong>{" "}
+                            {property.details.hoaDues === 0
+                              ? "None"
+                              : `$${property.details.hoaDues}`}
+                          </div>
+                        )}
+                      {property.details &&
+                        property.details.assocFee !== undefined && (
+                          <div>
+                            <strong>Association Fee:</strong>{" "}
+                            {property.details.assocFee === 0
+                              ? "None"
+                              : `$${property.details.assocFee}`}
+                          </div>
+                        )}
+                      {property.details &&
+                        property.details.roadAssessment !== undefined && (
+                          <div>
+                            <strong>Road Assessment:</strong>{" "}
+                            {property.details.roadAssessment === 0
+                              ? "None"
+                              : `$${property.details.roadAssessment}`}
+                          </div>
+                        )}
                     </div>
                   </div>
 
                   {/* View Information */}
-                  {property.overview && property.overview.view && property.overview.view.length > 0 && (
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                        Views
-                      </h3>
-                      <div className="flex flex-wrap gap-2">
-                        {property.overview.view.map((view, index) => (
-                          <span
-                            key={index}
-                            className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
-                          >
-                            {view}
-                          </span>
-                        ))}
+                  {property.overview &&
+                    property.overview.view &&
+                    property.overview.view.length > 0 && (
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                          Views
+                        </h3>
+                        <div className="flex flex-wrap gap-2">
+                          {property.overview.view.map((view, index) => (
+                            <span
+                              key={index}
+                              className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
+                            >
+                              {view}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
                 </div>
               </motion.div>
             </div>
@@ -518,7 +632,6 @@ const LandPropertyDetail = () => {
                 </h3>
 
                 <div className="space-y-4">
-
                   {/* Full Name */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -568,7 +681,9 @@ const LandPropertyDetail = () => {
                     </label>
                     <input
                       type="date"
-                      onFocus={(e) => e.target.showPicker && e.target.showPicker()}
+                      onFocus={(e) =>
+                        e.target.showPicker && e.target.showPicker()
+                      }
                       value={selectedDate}
                       onChange={(e) => setSelectedDate(e.target.value)}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -597,7 +712,11 @@ const LandPropertyDetail = () => {
                   <button
                     onClick={handleBookingSubmit}
                     disabled={
-                      !fullName || !email || !mobile || !selectedDate || !selectedTime
+                      !fullName ||
+                      !email ||
+                      !mobile ||
+                      !selectedDate ||
+                      !selectedTime
                     }
                     className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
                   >

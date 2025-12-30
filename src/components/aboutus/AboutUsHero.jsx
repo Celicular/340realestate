@@ -1,7 +1,16 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Award, Users, MapPin, Zap, Home, Shield, Heart, TrendingUp } from "lucide-react";
+import {
+  Award,
+  Users,
+  MapPin,
+  Zap,
+  Home,
+  Shield,
+  Heart,
+  TrendingUp,
+} from "lucide-react";
 import abouthero from "../../assets/teamabout.jpg";
 
 const AboutUsHero = () => {
@@ -124,7 +133,8 @@ const AboutUsHero = () => {
             transition={{ duration: 0.8, delay: 0.7 }}
             className="text-white text-xl md:text-2xl max-w-2xl font-light"
           >
-            Discover your paradise with 340 Real Estate—where local expertise meets Caribbean excellence
+            Discover your paradise with 340 Real Estate—where local expertise
+            meets Caribbean excellence
           </motion.p>
         </motion.div>
 
@@ -165,34 +175,41 @@ const AboutUsHero = () => {
               className="space-y-6 text-lg leading-relaxed"
             >
               <p className="text-gray-700">
-                Welcome to <span className="font-bold text-tropical-600">340 Real Estate</span>,
-                where local expertise meets Caribbean excellence. Our name tells our story—"340"
-                is our area code, a proud symbol of our deep roots and unwavering commitment to
-                this island community. We're not just real estate agents; we're locals who live,
-                work, and love St. John, USVI.
+                Welcome to{" "}
+                <span className="font-bold text-tropical-600">
+                  340 Real Estate
+                </span>
+                , where local expertise meets Caribbean excellence. Our name
+                tells our story—"340" is our area code, a proud symbol of our
+                deep roots and unwavering commitment to this island community.
+                We're not just real estate agents; we're locals who live, work,
+                and love St. John, USVI.
               </p>
 
               <p className="text-gray-700">
-                For over 15 years, we've been helping people just like you find their slice of
-                paradise. Whether you're searching for a luxurious oceanfront villa with
-                breathtaking vistas, a charming cottage nestled in the lush hills, a condo for
-                your investment portfolio, or the perfect land to build your dream home, we
-                have the expertise and dedication to make it happen.
+                For over 15 years, we've been helping people just like you find
+                their slice of paradise. Whether you're searching for a
+                luxurious oceanfront villa with breathtaking vistas, a charming
+                cottage nestled in the lush hills, a condo for your investment
+                portfolio, or the perfect land to build your dream home, we have
+                the expertise and dedication to make it happen.
               </p>
 
               <p className="text-gray-700">
-                Our success isn't measured in transactions—it's measured in relationships. We
-                believe that buying or selling property in St. John is about more than just
-                numbers on a contract. It's about helping you find a home, an investment, or a
-                legacy for your family. That's why we take the time to understand your vision,
+                Our success isn't measured in transactions—it's measured in
+                relationships. We believe that buying or selling property in St.
+                John is about more than just numbers on a contract. It's about
+                helping you find a home, an investment, or a legacy for your
+                family. That's why we take the time to understand your vision,
                 your timeline, and your unique needs.
               </p>
 
               <p className="text-gray-700">
-                With 500+ properties sold, 1,000+ satisfied clients, and a combined experience
-                of over 50 years in the St. John real estate market, we bring unparalleled
-                local knowledge to every single transaction. We know every neighborhood, every
-                microclimate, every school district, and every hidden gem on this island.
+                With 500+ properties sold, 1,000+ satisfied clients, and a
+                combined experience of over 50 years in the St. John real estate
+                market, we bring unparalleled local knowledge to every single
+                transaction. We know every neighborhood, every microclimate,
+                every school district, and every hidden gem on this island.
               </p>
             </motion.div>
           </motion.div>
@@ -214,7 +231,8 @@ const AboutUsHero = () => {
             </h2>
             <div className="w-16 h-1 bg-gradient-to-r from-tropical-500 to-sand-400 rounded-full mx-auto mb-8" />
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              These principles guide every decision we make and every client interaction
+              These principles guide every decision we make and every client
+              interaction
             </p>
           </motion.div>
 
@@ -315,8 +333,9 @@ const AboutUsHero = () => {
                       Size & Geography
                     </h3>
                     <p className="text-gray-600">
-                      20 square miles of pristine Caribbean beauty—7 miles long, 3 miles wide.
-                      Our highest point is Bordeaux Mountain at 1,277 feet above sea level.
+                      20 square miles of pristine Caribbean beauty—7 miles long,
+                      3 miles wide. Our highest point is Bordeaux Mountain at
+                      1,277 feet above sea level.
                     </p>
                   </div>
                 </div>
@@ -330,8 +349,9 @@ const AboutUsHero = () => {
                       Community
                     </h3>
                     <p className="text-gray-600">
-                      A tight-knit community of about 4,200 full-time residents who value
-                      sustainability, natural beauty, and island living.
+                      A tight-knit community of about 4,200 full-time residents
+                      who value sustainability, natural beauty, and island
+                      living.
                     </p>
                   </div>
                 </div>
@@ -345,8 +365,9 @@ const AboutUsHero = () => {
                       National Park Heritage
                     </h3>
                     <p className="text-gray-600">
-                      Two-thirds of the island is protected within the U.S. Virgin Islands
-                      National Park, preserving its natural splendor for generations.
+                      Two-thirds of the island is protected within the U.S.
+                      Virgin Islands National Park, preserving its natural
+                      splendor for generations.
                     </p>
                   </div>
                 </div>
@@ -368,8 +389,9 @@ const AboutUsHero = () => {
                       Lifestyle
                     </h3>
                     <p className="text-gray-600">
-                      Year-round tropical climate with average temperatures in the 80s. Water
-                      activities, hiking, beachcombing, and community events define life here.
+                      Year-round tropical climate with average temperatures in
+                      the 80s. Water activities, hiking, beachcombing, and
+                      community events define life here.
                     </p>
                   </div>
                 </div>
@@ -383,8 +405,9 @@ const AboutUsHero = () => {
                       Real Estate Market
                     </h3>
                     <p className="text-gray-600">
-                      A dynamic market ranging from luxury villas to charming cottages,
-                      investment properties to pristine land—all in high demand globally.
+                      A dynamic market ranging from luxury villas to charming
+                      cottages, investment properties to pristine land—all in
+                      high demand globally.
                     </p>
                   </div>
                 </div>
@@ -398,8 +421,8 @@ const AboutUsHero = () => {
                       U.S. Territory Benefits
                     </h3>
                     <p className="text-gray-600">
-                      U.S. citizenship, U.S. currency, and Act 60 tax incentives for
-                      businesses and investors make it uniquely attractive.
+                      U.S. citizenship, U.S. currency, and Act 60 tax incentives
+                      for businesses and investors make it uniquely attractive.
                     </p>
                   </div>
                 </div>
@@ -422,8 +445,8 @@ const AboutUsHero = () => {
               Ready to Find Your Paradise?
             </h2>
             <p className="text-xl text-tropical-100 mb-8 max-w-2xl mx-auto">
-              Let our local expertise guide you home. Whether you're buying, selling, or
-              exploring, 340 Real Estate is here to help.
+              Let our local expertise guide you home. Whether you're buying,
+              selling, or exploring, 340 Real Estate is here to help.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
