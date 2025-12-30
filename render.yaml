@@ -4,6 +4,11 @@ services:
     buildCommand: npm install && PUBLIC_URL=/ npm run build
     staticPublishPath: build
     
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    
     envVars:
       - key: NODE_ENV
         value: production
