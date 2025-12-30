@@ -93,6 +93,54 @@ const BlogDetails = () => {
     );
   }
 
+  // Helper function to parse inline markdown (bold, italic)
+  const parseInlineMarkdown = (text) => {
+    const parts = [];
+    let lastIndex = 0;
+    
+    // Regex to match **bold** and *italic*
+    const regex = /\*\*([^\*]+)\*\*|\*([^\*]+)\*/g;
+    let match;
+    
+    while ((match = regex.exec(text)) !== null) {
+      // Add text before the match
+      if (match.index > lastIndex) {
+        parts.push({ type: 'text', content: text.slice(lastIndex, match.index) });
+      }
+      
+      if (match[1]) {
+        // Bold text (**text**)
+        parts.push({ type: 'bold', content: match[1] });
+      } else if (match[2]) {
+        // Italic text (*text*)
+        parts.push({ type: 'italic', content: match[2] });
+      }
+      
+      lastIndex = regex.lastIndex;
+    }
+    
+    // Add remaining text
+    if (lastIndex < text.length) {
+      parts.push({ type: 'text', content: text.slice(lastIndex) });
+    }
+    
+    return parts.length > 0 ? parts : [{ type: 'text', content: text }];
+  };
+
+  // Helper function to render parsed inline markdown
+  const renderInlineMarkdown = (text) => {
+    const parts = parseInlineMarkdown(text);
+    return parts.map((part, idx) => {
+      if (part.type === 'bold') {
+        return <strong key={idx}>{part.content}</strong>;
+      } else if (part.type === 'italic') {
+        return <em key={idx}>{part.content}</em>;
+      } else {
+        return part.content;
+      }
+    });
+  };
+
   // Description parsing utility
   const renderDescription = (desc) => {
     // Special layout for the welcome blog
@@ -386,6 +434,9 @@ const BlogDetails = () => {
               if (imageSrc.startsWith("data:") || imageSrc.startsWith("/static/")) {
                 // This is an imported image from assets (webpack processed)
                 finalImageSrc = imageSrc;
+              } else if (imageSrc.startsWith("http://") || imageSrc.startsWith("https://")) {
+                // This is an absolute URL (external image or Google Drive)
+                finalImageSrc = imageSrc;
               } else if (imageSrc.startsWith("/")) {
                 finalImageSrc = imageSrc;
               } else if (imageSrc.startsWith("blog/")) {
@@ -454,7 +505,7 @@ const BlogDetails = () => {
             key={`text-${elements.length}`}
             className="text-gray-700 text-base mb-3"
           >
-            {line.trim()}
+            {renderInlineMarkdown(line.trim())}
           </p>
         );
       }

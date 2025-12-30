@@ -9,6 +9,13 @@ import wharfImage from "../../assets/blog/wharf.jpeg";
 import mongooseImage from "../../assets/blog/Mongoose.jpeg";
 import trunkbayImage from "../../assets/blog/Trunk-Bay.jpeg";
 
+// Import blog3 images for the new parcel blog
+import blog3Image1 from "../../assets/blog/blog3/1.jpg";
+import blog3Image2 from "../../assets/blog/blog3/2.jpg";
+import blog3Image3 from "../../assets/blog/blog3/3.jpg";
+import blog3Image4 from "../../assets/blog/blog3/4.jpg";
+import blog3Image5 from "../../assets/blog/blog3/5.jpg";
+
 // Create the hardcoded blogs
 const featuredBlogs = [
   {
@@ -102,6 +109,84 @@ We look forward to helping you find your perfect piece of paradise in St. John!`
     isHardcoded: true,
     views: 2,
     likes: 0
+  },
+  {
+    id: "two-affordable-parcels-coral-bay",
+    title: "Two Affordable Parcels Listed For Sale & Owner Financing May Be Available",
+    subtitle: "Are you looking to build a home here on St. John?",
+    description: `
+Are you looking to build a home here on St. John? Are you looking for gentle breezes and views of the harbor, the British Virgin Islands, or lush valleys—all while being close to Skinny Legs, Lime Out, and other great restaurants and shops in Coral Bay?
+
+If so, you may be interested in one of the two properties that recently listed for sale.
+
+## 8-36 Emmaus, Coral Bay
+
+![Property Location – 8-36 Emmaus](` + blog3Image1 + `)
+
+This quarter-acre lot is located in the **Seagrape Hill subdivision**, which you enter from Route 10 (Centerline Road) just before Skinny Legs in Coral Bay.
+
+This property is priced to sell at **$99,000**. Owner financing may be available to qualified buyers, making this an even more attractive buy.
+
+The property is accessed from **fully paved roads**, with **utilities nearby**. It features **westerly views of Coral Bay Harbor**, along with **lush valley views**.
+
+The location is peaceful and private, yet still close to the action of Coral Bay. You could walk to Skinny Legs—though you probably wouldn't want to walk home uphill 🙂—but it really is that close.
+
+![View Toward Coral Bay Harbor](` + blog3Image2 + `)
+
+**Seagrape Hill highlights:**
+- Located near Skinny Legs
+- Across from the Coral Bay fire station
+- Excellent breezes
+- Views toward Coral Bay Harbor and Bordeaux Mountain
+- Restaurants and shops just minutes away
+
+**Full listing:**  
+https://www.flexmls.com/share/CzzmB/8-36-Emmaus-Coral-Bay-St-John-US-VI-00830
+
+This property is listed with **Jenn Manes** for **$99,000**.  
+📧 jenn@explorestj.com  
+📞 203-376-3786
+
+
+## 10-25F Carolina, Coral Bay
+
+![Road Access – 10-25F Carolina](` + blog3Image3 + `)
+
+This **0.35-acre parcel** offers beautiful views of **Coral Bay Harbor**, the **Sir Francis Drake Channel**, the **British Virgin Islands**, and beyond.
+
+The lot is located on **Bordeaux Mountain** and faces east. Access is relatively easy—drive up Route 108 from Coral Bay, take the second left, and the property will be on your left.
+
+The land is currently a bit overgrown due to recent rains, but a small amount of clearing would reveal **spectacular water views**.
+
+![Water Views After Clearing](` + blog3Image4 + `)
+
+The current owners have **expired house plans** that they will provide to the new owners—an important advantage that can save both time and money during the building process.
+
+![Expired Plans – Two-Story Home](` + blog3Image5 + `)
+
+This property is also priced to sell, with **owner financing potentially available** to qualified buyers.
+
+**Listing price:** **$115,000**  
+**Agent:** Jenn Manes  
+📧 jenn@explorestj.com  
+📞 203-376-3786
+
+## Looking for More Properties?
+
+Want to see what else is listed for sale in St. John?
+
+Search current MLS listings—including homes, condos, land, commercial, and fractional properties—at:
+
+👉 https://340realestate.com/mls
+
+Listings can be searched 24/7.`,
+    coverImage: blog3Image1,
+    author: "Jenn Manes, 340 Real Estate Agent",
+    publishedAt: "Dec 31, 25",
+    category: "Property News",
+    isHardcoded: true,
+    views: 0,
+    likes: 0
   }
 ];
 
@@ -114,7 +199,8 @@ const processHardcodedBlogs = () => {
     isHardcoded: true,
     // Keep the original publishedAt date as is
     publishedAt: blog.publishedAt || "Oct 8, 25",
-    createdAt: blog.createdAt || (blog.id === "get-to-know-st-john" ? new Date("2025-10-13") : new Date("2025-10-08")),
+    // Convert createdAt to timestamp (milliseconds) for Redux serialization
+    createdAt: blog.createdAt || (blog.id === "get-to-know-st-john" ? new Date("2025-10-13").getTime() : new Date("2025-10-08").getTime()),
     // Add default values
     views: blog.views || 0,
     likes: blog.likes || 0,
