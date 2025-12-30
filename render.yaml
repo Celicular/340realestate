@@ -5,12 +5,11 @@ services:
     region: ohio
     plan: starter
 
-    buildCommand: npm install && npm run build
-    startCommand: node server.js
+    startCommand: npm start
 
     envVars:
       - key: NODE_ENV
-        value: production
+        value: development
       - key: REACT_APP_FIREBASE_API_KEY
         sync: false
       - key: REACT_APP_FIREBASE_AUTH_DOMAIN
