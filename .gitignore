@@ -2,8 +2,9 @@
 
 # dependencies
 /node_modules
-/.pnp
-.pnp.js
+node_modules/
+*/node_modules/
+src/firebaseroletool/node_modules/
 
 # environment variables - NEVER commit these
 /.env

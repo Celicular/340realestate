@@ -1,0 +1,54 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Block access to admin and private areas
+Disallow: /admin/
+Disallow: /login/
+Disallow: /register/
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /debug/
+Disallow: /debug-registration
+
+# Block old/deprecated pages
+Disallow: /shop
+Disallow: /booking/
+Disallow: /portfolio/
+Disallow: /category/
+Disallow: /product/
+Disallow: /product-category/
+Disallow: /sample-page/
+Disallow: /gallery/
+Disallow: /resources/
+Disallow: /contact-2/
+Disallow: /testimonials/
+
+# Allow important pages
+Allow: /properties
+Allow: /rental/
+Allow: /villa-rentals/
+Allow: /villa/
+Allow: /blog/
+Allow: /blogs
+Allow: /contact
+Allow: /aboutus
+Allow: /about
+Allow: /incentives
+Allow: /testimonial
+Allow: /saleshistory
+Allow: /landproperties
+Allow: /mls
+Allow: /agent/
+Allow: /property/
+Allow: /soldproperty/
+Allow: /landproperty/
+Allow: /landsold/
+
+# Crawl delay
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://www.340realestate.com/sitemap.xml
+Sitemap: https://340realestate.com/sitemap.xml

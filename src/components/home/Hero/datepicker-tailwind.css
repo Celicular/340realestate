@@ -1,0 +1,15 @@
+.react-datepicker {
+  font-family: inherit;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.react-datepicker__header {
+  background-color: #f8fafc;
+  border-bottom: none;
+}
+
+.react-datepicker__day--selected {
+  background-color: #14b8a6 !important; /* tropical-500 */
+  color: white;
+}

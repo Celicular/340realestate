@@ -1,0 +1,178 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is admin or agent
+    function isAdminOrAgent() {
+      return request.auth != null && 
+        (request.auth.token.role == 'admin' || request.auth.token.role == 'agent');
+    }
+    
+    function isAdmin() {
+      return request.auth != null && request.auth.token.role == 'admin';
+    }
+    
+    // Blogs - Public read, admin/agent write
+    match /blogs/{blogId} {
+      allow read: if true;
+      allow create, update, delete: if isAdminOrAgent();
+    }
+    
+    // Properties - Public read, admin/agent write
+    match /properties/{propertyId} {
+      allow read: if true;
+      allow create, update, delete: if isAdminOrAgent();
+    }
+    
+    // Rental properties (Main Collection) - Public read, admin/agent write
+    match /rentalProperties/{rentalId} {
+      allow read: if true;
+      allow create, update, delete: if isAdminOrAgent();
+      
+      // Booking Requests Subcollection - Public create, admin/agent read/update/delete
+      match /bookingRequests/{bookingId} { 
+        // Allow anyone to create booking requests with validation
+        allow create: if request.resource.data.keys().hasAll(['name', 'email', 'phone', 'checkIn', 'checkOut']) &&
+                      request.resource.data.name is string &&
+                      request.resource.data.name.size() > 0 &&
+                      request.resource.data.name.size() <= 100 &&
+                      request.resource.data.email is string &&
+                      request.resource.data.email.matches('.*@.*\\..*') &&
+                      request.resource.data.phone is string &&
+                      request.resource.data.phone.size() > 0 &&
+                      request.resource.data.phone.size() <= 20 &&
+                      request.resource.data.checkIn is string &&
+                      request.resource.data.checkOut is string;
+        
+        allow read, update, delete: if isAdminOrAgent();
+      }
+    }
+
+    // Sale properties - Public read, admin/agent write
+    match /saleProperties/{saleId} {
+      allow read: if true;
+      allow create, update, delete: if isAdminOrAgent();
+    }
+    
+    // Sold properties - Public read, admin/agent write
+    match /soldProperties/{soldId} {
+      allow read: if true;
+      allow create, update, delete: if isAdminOrAgent();
+    }
+    
+    // Reviews - Public read approved, public create with validation, admin manage all
+    match /reviews/{reviewId} {
+      // Public can read approved reviews, admins can read all
+      allow read: if resource.data.status == 'approved' || isAdmin();
+      
+      // Allow anyone to create reviews with strict validation
+      allow create: if request.resource.data.keys().hasAll(['title', 'body', 'name', 'rating', 'status', 'createdAt']) &&
+                    request.resource.data.title is string &&
+                    request.resource.data.title.size() > 0 &&
+                    request.resource.data.title.size() <= 200 &&
+                    request.resource.data.body is string &&
+                    request.resource.data.body.size() > 0 &&
+                    request.resource.data.body.size() <= 2000 &&
+                    request.resource.data.name is string &&
+                    request.resource.data.name.size() > 0 &&
+                    request.resource.data.name.size() <= 100 &&
+                    request.resource.data.rating is number &&
+                    request.resource.data.rating >= 1 &&
+                    request.resource.data.rating <= 5 &&
+                    request.resource.data.status == 'approved' &&
+                    request.resource.data.createdAt is timestamp;
+      
+      // Only admins can update or delete reviews
+      allow update, delete: if isAdmin();
+    }
+    
+    // Team members - Public read, admin write
+    match /team_members/{memberId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+    
+    // Users - Authenticated users can read/write their own data, admins can read/write all
+    match /users/{userId} {
+      allow read: if request.auth != null && 
+        (request.auth.uid == userId || isAdmin());
+      allow write: if request.auth != null && 
+        (request.auth.uid == userId || isAdmin());
+    }
+    
+    // Contacts - Public create with validation, admin read/manage
+    match /contacts/{contactId} {
+      allow read: if isAdmin();
+      
+      // Allow anyone to create contact forms with validation
+      allow create: if request.resource.data.keys().hasAll(['name', 'email', 'message']) &&
+                    request.resource.data.name is string &&
+                    request.resource.data.name.size() > 0 &&
+                    request.resource.data.name.size() <= 100 &&
+                    request.resource.data.email is string &&
+                    request.resource.data.email.matches('.*@.*\\..*') &&
+                    request.resource.data.message is string &&
+                    request.resource.data.message.size() > 0 &&
+                    request.resource.data.message.size() <= 2000 &&
+                    // Subject is optional but if provided, must be valid
+                    (!request.resource.data.keys().hasAny(['subject']) || 
+                     (request.resource.data.subject is string && 
+                      request.resource.data.subject.size() <= 200)) &&
+                    // Auto-added fields validation
+                    request.resource.data.createdAt is timestamp &&
+                    request.resource.data.status == 'new';
+      
+      allow update, delete: if isAdmin();
+    }
+    
+    // Rentals (Legacy/Separate collection) - Admin/agent access only
+    match /rentals/{rentalId} {
+      allow read, write: if isAdminOrAgent();
+    }
+    
+    // Agents collection - Public read, admin/agent write
+    match /agents/{agentId} {
+      allow read: if true;
+      allow create, update, delete: if isAdminOrAgent();
+    }
+    
+    // Residential Portfolio - Public read, admin/agent write
+    match /residentialPortfolio/{itemId} {
+      allow read: if true;
+      allow create, update, delete: if isAdminOrAgent();
+    }
+    
+    // Commercial Portfolio - Public read, admin/agent write
+    match /commercialPortfolio/{itemId} {
+      allow read: if true;
+      allow create, update, delete: if isAdminOrAgent();
+    }
+    
+    // Land Portfolio - Public read, admin/agent write
+    match /landPortfolio/{itemId} {
+      allow read: if true;
+      allow create, update, delete: if isAdminOrAgent();
+    }
+    
+    // Villa bookings collection - Public create with validation, admin/agent read/manage
+    match /villaBookings/{bookingId} {
+      allow read: if isAdminOrAgent();
+      
+      // Allow anyone to create villa bookings with validation
+      allow create: if request.resource.data.keys().hasAll(['name', 'email', 'phone', 'checkIn', 'checkOut']) &&
+                    request.resource.data.name is string &&
+                    request.resource.data.name.size() > 0 &&
+                    request.resource.data.name.size() <= 100 &&
+                    request.resource.data.email is string &&
+                    request.resource.data.email.matches('.*@.*\\..*') &&
+                    request.resource.data.phone is string &&
+                    request.resource.data.phone.size() > 0 &&
+                    request.resource.data.phone.size() <= 20 &&
+                    request.resource.data.checkIn is string &&
+                    request.resource.data.checkOut is string;
+      
+      allow update, delete: if isAdminOrAgent();
+    }
+  }
+}

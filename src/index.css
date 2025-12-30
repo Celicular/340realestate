@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* --- FIX WHITE BORDER (GLOBAL RESET) --- */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+/* Prevent elements from breaking layout */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Custom Animations for Slideshow */
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceX {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-3px);
+  }
+}
+
+@keyframes bounceXReverse {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+}
+
+
+/* Animation Classes */
+.animate-pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 1s ease-out;
+}
+
+.animate-fade-in-up-delay {
+  animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 1s ease-out;
+}
+
+.animate-slide-in-left-delay {
+  animation: slideInLeft 1s ease-out 0.2s both;
+}
+
+.animate-slide-in-left-delay-2 {
+  animation: slideInLeft 1s ease-out 0.4s both;
+}
+
+.animate-bounce-x {
+  animation: bounceX 0.6s ease-in-out;
+}
+
+.animate-bounce-x-reverse {
+  animation: bounceXReverse 0.6s ease-in-out;
+}
+
+/* Hide scrollbar for webkit browsers */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
+  overflow-x: hidden;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Smooth transitions */
+* {
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms; 
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+:root {
+  --global-primary-font-family: "Playfair Display", serif;
+}
+
+/* Hide ALL Tawk.to floating buttons and bubbles */
+#tawkchat-minified-wrapper,
+#tawkchat-iframe-container,
+#tawkchat-container,
+.tawk-min-container,
+.tawk-min-chat,
+.tawk-icon-right,
+.tawk-button-circle,
+#tawk-prechat,
+#tawkchat-launcher,
+#tawkchat-status,
+#tawk-to-widget-container {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 0 !important;
+  pointer-events: visible !important;
+  z-index: -999999 !important;
+}
+
+.hide-public-navbar header,
+.hide-public-navbar nav.main-navbar,
+.hide-public-navbar .public-navbar {
+  display: none !important;
+}
+
+
+.input {
+  @apply w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500;
+}
+.card {
+  @apply bg-white p-6 rounded-xl border shadow-sm space-y-4;
+}
+.section-title {
+  @apply text-lg font-semibold;
+}
+.btn-primary {
+  @apply bg-blue-600 text-white px-8 py-3 rounded-lg flex items-center gap-2;
+}
+.btn-dark {
+  @apply bg-gray-900 text-white px-5 py-3 rounded-lg;
+}
+.chip {
+  @apply px-4 py-2 border rounded-full cursor-pointer text-sm hover:bg-blue-50;
+}
+.chip-active {
+  @apply bg-blue-600 text-white border-blue-600;
+}
