@@ -25,7 +25,3 @@ services:
         sync: false
       - key: REACT_APP_SUPABASE_ANON_KEY
         sync: false
-    
-    routes:
-      - path: /*
-        destination: /index.html
