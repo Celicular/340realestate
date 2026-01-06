@@ -13,7 +13,7 @@ const HeroSection = () => {
   const [isDarkBg, setIsDarkBg] = useState(true); // Track if current bg is dark
 
   const heroImages = [hero1, hero2, hero3, hero4];
-  
+
   // Define which images have lighter backgrounds (adjust based on your actual images)
   const lightBackgroundImages = []; // Add indices of images with lighter backgrounds, e.g., [1, 3]
 
@@ -106,10 +106,10 @@ const HeroSection = () => {
       <div className="relative z-30 flex items-center justify-center h-full px-6 text-center text-white">
         <div className="max-w-4xl">
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif font-bold mb-6 drop-shadow-2xl">
-            Discover Your Paradise
+            Discover Your Paradise in The US Virgin Islands
           </h1>
           <p className="text-xl sm:text-2xl lg:text-3xl mb-10 font-light tracking-wide">
-            Luxury Real Estate in St. John, USVI
+            ST. JOHN REAL ESTATE SPECIALISTS
           </p>
 
           {/* CTA Button */}
@@ -123,8 +123,18 @@ const HeroSection = () => {
               backdrop-blur-md border border-white/30 hover:border-white/50
             "
           >
-            <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <svg
+              className="w-6 h-6 mr-3"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
             </svg>
             Search MLS Properties
           </Link>
