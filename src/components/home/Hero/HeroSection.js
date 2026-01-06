@@ -35,11 +35,11 @@ const HeroSection = () => {
   }, []);
 
   const socialLinks = [
-    { icon: Facebook, href: "https://www.facebook.com", label: "Facebook" },
-    { icon: Instagram, href: "https://www.instagram.com/", label: "Instagram" },
-    { icon: FaXTwitter, href: "https://x.com", label: "Twitter" },
-    { icon: FaWhatsapp, href: "https://wa.me/", label: "Whatsapp" },
-    { icon: Youtube, href: "https://www.youtube.com", label: "YouTube" },
+    { icon: Facebook, href: "https://www.facebook.com/yourpage", label: "Facebook" },
+    { icon: Instagram, href: "https://www.instagram.com/yourprofile", label: "Instagram" },
+    { icon: FaXTwitter, href: "https://x.com/yourprofile", label: "Twitter" },
+    { icon: FaWhatsapp, href: "https://wa.me/1234567890", label: "Whatsapp" },
+    { icon: Youtube, href: "https://www.youtube.com/yourchannel", label: "YouTube" },
   ];
 
   return (
@@ -56,10 +56,10 @@ const HeroSection = () => {
             }`}
           />
         ))}
-        <div className="absolute inset-0 bg-black/40 z-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-black/40 z-10" />
       </div>
 
-      <div className="hidden md:absolute md:mt-20 md:z-30 md:flex md:flex-col md:right-6 md:top-24 md:gap-4 pointer-events-auto">
+      <div className="absolute mt-20 z-50 flex flex-col right-6 top-24 gap-4">
         {socialLinks.map((social, idx) => (
           <a
             key={idx}
@@ -68,7 +68,7 @@ const HeroSection = () => {
             rel="noopener noreferrer"
             aria-label={social.label}
             className={`
-              group relative z-10
+              group relative z-50 pointer-events-auto
               p-3
               w-12 h-12
               backdrop-blur-md rounded-full
@@ -76,8 +76,8 @@ const HeroSection = () => {
               transition-all duration-500
               flex items-center justify-center
               border
-              pointer-events-auto
               shadow-lg
+              cursor-pointer
               ${
                 isDarkBg
                   ? "bg-white/15 hover:bg-white/25 border-white/10"
@@ -90,7 +90,6 @@ const HeroSection = () => {
               className: `
                 group-hover:scale-110 transition-all duration-500
                 w-6 h-6
-                pointer-events-none
                 ${
                   isDarkBg
                     ? "text-white group-hover:text-cyan-300"
