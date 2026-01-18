@@ -16,6 +16,14 @@ import chart from "../../../assets/chart.png";
 const salesData = {
   Homes: [
     {
+      year: 2025,
+      sold: 48,
+      low: "$255,000",
+      high: "$10,500,000",
+      avg: "$5,377,500",
+      total: "$78,302,500",
+    },
+    {
       year: 2024,
       sold: 38,
       low: "$365,000",
@@ -146,6 +154,14 @@ const salesData = {
   ],
   Land: [
     {
+      year: 2025,
+      sold: 23,
+      low: "$37,500",
+      high: "$350,000",
+      avg: "$193,750",
+      total: "$3,441,500",
+    },
+    {
       year: 2024,
       sold: 26,
       low: "$40,000",
@@ -275,6 +291,14 @@ const salesData = {
     },
   ],
   Condos: [
+    {
+      year: 2025,
+      sold: 9,
+      low: "$500,000",
+      high: "$1,500,000",
+      avg: "$1,000,000",
+      total: "$8,405,000",
+    },
     {
       year: 2024,
       sold: 6,

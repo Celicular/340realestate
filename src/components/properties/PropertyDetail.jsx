@@ -272,12 +272,18 @@ const handleBookingSubmit = async () => {
 
   return (
     <div>
-      <section className="relative h-[65vh] md:h-[80vh] w-full overflow-hidden">
-        <img
-          src={activeProperty.images[0]}
-          alt={activeProperty.title}
-          className="absolute inset-0 w-full h-full object-cover object-center scale-105 transition-transform duration-700 ease-in-out"
-        />
+      <section className="relative h-[65vh] md:h-[80vh] w-full overflow-hidden bg-gray-300">
+        {activeProperty.images && activeProperty.images.length > 0 ? (
+          <img
+            src={activeProperty.images[0]}
+            alt={activeProperty.title}
+            className="absolute inset-0 w-full h-full object-cover object-center scale-105 transition-transform duration-700 ease-in-out"
+          />
+        ) : (
+          <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-gray-400 to-gray-500 flex items-center justify-center">
+            <p className="text-white text-lg">No image available</p>
+          </div>
+        )}
         <div className="absolute inset-0 bg-black/40" />
 
         <motion.div
@@ -536,12 +542,16 @@ const handleBookingSubmit = async () => {
                       Amenities
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                      {activeProperty.amenities.map((amenity, index) => (
-                        <div key={index} className="flex items-center gap-2">
-                          <Star className="text-blue-600" size={16} />
-                          <span className="text-gray-700">{amenity}</span>
-                        </div>
-                      ))}
+                      {activeProperty.amenities && activeProperty.amenities.length > 0 ? (
+                        activeProperty.amenities.map((amenity, index) => (
+                          <div key={index} className="flex items-center gap-2">
+                            <Star className="text-blue-600" size={16} />
+                            <span className="text-gray-700">{amenity}</span>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="text-gray-500">No amenities available</p>
+                      )}
                     </div>
                   </div>
                 </div>

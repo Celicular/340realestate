@@ -1,0 +1,286 @@
+[
+  {
+    "title": "17D-3 Emmaus",
+    "kept_doc_id": "1585Y3R4iiag8MeEB93y",
+    "deleted_doc_ids": [
+      "69up7MahMbVlOVGbLa3s"
+    ],
+    "merged_data_summary": [
+      "  - amenities: Combined 2 sources (3 total items)",
+      "  - category: residential",
+      "  - createdAt: 2025-10-08 12:50:24.217000+00:00",
+      "  - description: Tropical off-grid paradise up Johnny Horn Trail! C",
+      "  - features: Merged from 2 sources",
+      "  - id: 1585Y3R4iiag8MeEB93y",
+      "  - images: Combined 2 sources (1 total items)",
+      "  - location: 17D-3 Emmaus, Coral Bay St John, US VI 00830",
+      "  - price: $585,000",
+      "  - propertyType: house",
+      "  - source: sales-data",
+      "  - status: for-sale",
+      "  - subcategory: house",
+      "  - title: 17D-3 Emmaus",
+      "  - updatedAt: 2025-12-05 23:24:32.337000+00:00"
+    ],
+    "action": "MERGED",
+    "timestamp": "2026-01-15T04:08:52.573183"
+  },
+  {
+    "title": "17E-1 + Emmaus",
+    "kept_doc_id": "t8tDX1dozXpEUHqPbFZq",
+    "deleted_doc_ids": [
+      "B2Q8GKnAZoi5kK06h99o"
+    ],
+    "merged_data_summary": [
+      "  - amenities: Combined 2 sources (3 total items)",
+      "  - category: residential",
+      "  - createdAt: 2025-10-08 12:50:23.873000+00:00",
+      "  - description: Stunning location with beautiful vistas of Hurrica",
+      "  - features: Merged from 2 sources",
+      "  - id: t8tDX1dozXpEUHqPbFZq",
+      "  - images: Combined 2 sources (16 total items)",
+      "  - location: 17E-1 + Emmaus, Coral Bay St John, US VI 00830",
+      "  - price: $2,500,000",
+      "  - propertyType: house",
+      "  - source: sales-data",
+      "  - status: for-sale",
+      "  - subcategory: house",
+      "  - title: 17E-1 + Emmaus",
+      "  - updatedAt: 2025-12-05 23:20:36.231000+00:00"
+    ],
+    "action": "MERGED",
+    "timestamp": "2026-01-15T04:09:30.803295"
+  },
+  {
+    "title": "Banana Sweet",
+    "kept_doc_id": "fgM6TyJgy3h7hXTI6pKS",
+    "deleted_doc_ids": [
+      "hm6Eylca2es2x78z5eGe"
+    ],
+    "merged_data_summary": [
+      "  - category: residential",
+      "  - createdAt: 2025-10-08 12:50:21.225000+00:00",
+      "  - description: Well maintained home in Coral Bay. Upper level is ",
+      "  - features: Merged from 2 sources",
+      "  - id: fgM6TyJgy3h7hXTI6pKS",
+      "  - images: Combined 2 sources (10 total items)",
+      "  - location: 1-29 Rem Carolina, Coral Bay St John, US VI 00830",
+      "  - price: $930,000",
+      "  - propertyType: house",
+      "  - source: sales-data",
+      "  - status: for-sale",
+      "  - subcategory: house",
+      "  - title: Banana Sweet",
+      "  - updatedAt: 2025-12-06 07:34:38.145000+00:00"
+    ],
+    "action": "MERGED",
+    "timestamp": "2026-01-15T04:09:51.728894"
+  },
+  {
+    "title": "Bay Tree Cottage",
+    "kept_doc_id": "AN0vY9SmNoqUHIGiayGG",
+    "deleted_doc_ids": [
+      "9OIfTpR0phGQjjsqZCS3"
+    ],
+    "merged_data_summary": [
+      "  - category: residential",
+      "  - createdAt: 2025-10-08 12:50:20.896000+00:00",
+      "  - description: Bay Tree Cottages is a secluded, private end of th",
+      "  - features: Merged from 2 sources",
+      "  - id: AN0vY9SmNoqUHIGiayGG",
+      "  - images: Combined 2 sources (23 total items)",
+      "  - location: 10-49 Carolina, St John, US VI 00830",
+      "  - price: $638,000",
+      "  - propertyType: cottage",
+      "  - source: sales-data",
+      "  - status: for-sale",
+      "  - subcategory: cottage",
+      "  - title: Bay Tree Cottage",
+      "  - updatedAt: 2025-12-05 23:06:46.823000+00:00"
+    ],
+    "action": "MERGED",
+    "timestamp": "2026-01-15T04:10:24.880053"
+  },
+  {
+    "title": "Concordia",
+    "kept_doc_id": "j6HzI9ZWDIyXoJr5IkY2",
+    "deleted_doc_ids": [
+      "onIWUFTSqgEvzdWlvoJI"
+    ],
+    "merged_data_summary": [
+      "  - category: residential",
+      "  - createdAt: 2025-10-08 12:50:21.575000+00:00",
+      "  - description: Unparalleled Views & Endless Potential! Perched on",
+      "  - features: Merged from 2 sources",
+      "  - id: j6HzI9ZWDIyXoJr5IkY2",
+      "  - images: Combined 2 sources (8 total items)",
+      "  - location: 2-7 & 2-4 Concordia, Coral Bay St John, US VI 0083",
+      "  - price: $1,150,000",
+      "  - propertyType: house",
+      "  - source: sales-data",
+      "  - status: for-sale",
+      "  - subcategory: house",
+      "  - title: Concordia",
+      "  - updatedAt: 2025-12-05 23:10:39.893000+00:00"
+    ],
+    "action": "MERGED",
+    "timestamp": "2026-01-15T04:10:42.854701"
+  },
+  {
+    "title": "Fish Bay",
+    "kept_doc_id": "SmhChZ6yIYspIrbc9nn3",
+    "deleted_doc_ids": [
+      "dpzncmsf2HsV8xykBtQx"
+    ],
+    "merged_data_summary": [
+      "  - amenities: Combined 2 sources (6 total items)",
+      "  - category: residential",
+      "  - createdAt: 2025-10-08 12:50:22.566000+00:00",
+      "  - description: \n\u201cBrizan\" is a charming, single level 3BR/3BA Carr",
+      "  - features: Merged from 2 sources",
+      "  - id: SmhChZ6yIYspIrbc9nn3",
+      "  - images: Combined 2 sources (2 total items)",
+      "  - location: 116 Fish Bay, Reef Bay St John, US VI 00830",
+      "  - price: $1,950,000",
+      "  - propertyType: house",
+      "  - source: sales-data",
+      "  - status: for-sale",
+      "  - subcategory: house",
+      "  - title: Fish Bay",
+      "  - updatedAt: 2025-12-05 23:14:08.790000+00:00"
+    ],
+    "action": "MERGED",
+    "timestamp": "2026-01-15T04:11:07.375708"
+  },
+  {
+    "title": "Freemans Ground",
+    "kept_doc_id": "R5xfIAiAX3WphJvhovZW",
+    "deleted_doc_ids": [
+      "GAuBrdsc5q5tYpgbpQvk"
+    ],
+    "merged_data_summary": [
+      "  - amenities: Combined 2 sources (4 total items)",
+      "  - category: residential",
+      "  - createdAt: 2025-10-08 12:50:22.877000+00:00",
+      "  - description: \nLooking for a great family home where everyone ha",
+      "  - features: Merged from 2 sources",
+      "  - id: R5xfIAiAX3WphJvhovZW",
+      "  - images: Combined 2 sources (13 total items)",
+      "  - location: 11 Freemans Ground, Coral Bay St John, US VI 00830",
+      "  - price: $2,495,000",
+      "  - propertyType: house",
+      "  - source: sales-data",
+      "  - status: for-sale",
+      "  - subcategory: house",
+      "  - title: Freemans Ground",
+      "  - updatedAt: 2025-12-05 23:16:31.516000+00:00"
+    ],
+    "action": "MERGED",
+    "timestamp": "2026-01-15T04:11:30.118024"
+  },
+  {
+    "title": "Friis Bay",
+    "kept_doc_id": "vi6Khul3UCOansVWT9eJ",
+    "deleted_doc_ids": [
+      "l2dj1uy0eBqOeKNhy4Cl"
+    ],
+    "merged_data_summary": [
+      "  - category: residential",
+      "  - createdAt: 2025-10-08 12:50:21.890000+00:00",
+      "  - description: Nestled along the turquoise shores of Friis Bay, t",
+      "  - features: Merged from 2 sources",
+      "  - id: vi6Khul3UCOansVWT9eJ",
+      "  - images: Combined 2 sources (13 total items)",
+      "  - location: 13BB-10 13BB-7 Hard Labor, Coral Bay St John, US V",
+      "  - price: $1,495,000",
+      "  - propertyType: house",
+      "  - source: sales-data",
+      "  - status: for-sale",
+      "  - subcategory: house",
+      "  - title: Friis Bay",
+      "  - updatedAt: 2025-12-05 23:12:35.911000+00:00"
+    ],
+    "action": "MERGED",
+    "timestamp": "2026-01-15T04:11:44.435770"
+  },
+  {
+    "title": "Grunwald cottage",
+    "kept_doc_id": "DwiD6kHU3XPFbZJ1NAJU",
+    "deleted_doc_ids": [
+      "sZn0WjK4SBreXG7aiJRj"
+    ],
+    "merged_data_summary": [
+      "  - amenities: Combined 2 sources (4 total items)",
+      "  - category: residential",
+      "  - createdAt: 2025-10-08 12:50:23.215000+00:00",
+      "  - description: Price reduction! This sweet island cottage, just a",
+      "  - features: Merged from 2 sources",
+      "  - id: DwiD6kHU3XPFbZJ1NAJU",
+      "  - images: Combined 2 sources (9 total items)",
+      "  - location: 9-17-G #22 Glucksberg, Cruz Bay St John, US VI 008",
+      "  - price: $590,000",
+      "  - propertyType: cottage",
+      "  - source: sales-data",
+      "  - status: for-sale",
+      "  - subcategory: cottage",
+      "  - title: Grunwald cottage",
+      "  - updatedAt: 2025-12-05 23:37:43.491000+00:00"
+    ],
+    "action": "MERGED",
+    "timestamp": "2026-01-15T04:12:00.679289"
+  },
+  {
+    "title": "Still Water & Ripple Combo Package",
+    "kept_doc_id": "0l5OfKc8HOJcEgf5PIhE",
+    "deleted_doc_ids": [
+      "TbNgBLLKmrp47igIq05J"
+    ],
+    "merged_data_summary": [
+      "  - amenities: Combined 2 sources (16 total items)",
+      "  - category: residential",
+      "  - createdAt: 2025-10-08 12:50:19.150000+00:00",
+      "  - description: Exclusive combo package featuring both Still Water",
+      "  - features: Merged from 2 sources",
+      "  - id: 0l5OfKc8HOJcEgf5PIhE",
+      "  - images: Combined 2 sources (39 total items)",
+      "  - location: Chocolate Hole & Coral Bay, St. John",
+      "  - price: $2,499,995.00",
+      "  - propertyDetails: Combined 2 sources (1 total items)",
+      "  - propertyType: combo",
+      "  - showPackageDetails: True",
+      "  - source: sales-data",
+      "  - status: for-sale",
+      "  - subcategory: combo",
+      "  - title: Still Water & Ripple Combo Package",
+      "  - updatedAt: 2025-12-06 12:34:48.046000+00:00"
+    ],
+    "action": "MERGED",
+    "timestamp": "2026-01-15T04:12:22.102485"
+  },
+  {
+    "title": "Wind Diva",
+    "kept_doc_id": "yC4Zpuly82xrWCFGdLPK",
+    "deleted_doc_ids": [
+      "4UZ89b4wGSaO31sIauVb"
+    ],
+    "merged_data_summary": [
+      "  - amenities: Combined 2 sources (6 total items)",
+      "  - category: residential",
+      "  - createdAt: 2025-10-08 12:50:20.544000+00:00",
+      "  - description: Wind Diva is a great Caribbean Cottage close to Co",
+      "  - features: Merged from 2 sources",
+      "  - id: yC4Zpuly82xrWCFGdLPK",
+      "  - images: Combined 2 sources (4 total items)",
+      "  - location: 1-37A Carolina, Coral Bay St John, US VI 00830",
+      "  - price: $749,000",
+      "  - propertyType: cottage",
+      "  - source: sales-data",
+      "  - status: for-sale",
+      "  - subcategory: cottage",
+      "  - title: Wind Diva",
+      "  - updatedAt: 2025-12-05 23:08:45.178000+00:00"
+    ],
+    "action": "MERGED",
+    "timestamp": "2026-01-15T04:12:46.997342"
+  }
+]
