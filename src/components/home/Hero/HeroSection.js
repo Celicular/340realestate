@@ -59,7 +59,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-black/40 z-10" />
       </div>
 
-      <div className="absolute mt-20 z-50 flex flex-col right-6 top-24 gap-4">
+      <div className="absolute mt-20 z-50 hidden md:flex flex-col right-6 top-24 gap-4">
         {socialLinks.map((social, idx) => (
           <a
             key={idx}

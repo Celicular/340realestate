@@ -58,7 +58,7 @@ const PropertyCard = memo(
         </div>
       </div>
     );
-  }
+  },
 );
 
 // Filter Modal Component
@@ -236,7 +236,7 @@ const FilterModal = memo(
         </div>
       </>
     );
-  }
+  },
 );
 
 const PropertiesForSale = memo(({ selectedCategory }) => {
