@@ -3,12 +3,6 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import image1 from "../../../assets/gallery/attraction1.jpg";
 import image2 from "../../../assets/gallery/attraction2.jpg";
 import image3 from "../../../assets/gallery/attraction3.jpg";
-import image8 from "../../../assets/gallery/attraction4.JPG";
-
-import image4 from "../../../assets/gallery/about1.jpg";
-import image5 from "../../../assets/gallery/about3.jpg";
-import image6 from "../../../assets/gallery/about2.jpg";
-import image7 from "../../../assets/gallery/about4.jpg";
 
 import image14 from "../../../assets/gallery/mls1.jpg";
 import image9 from "../../../assets/gallery/mls2.jpg";
@@ -47,36 +41,6 @@ const GallerySection = () => {
       src: image3,
       alt: "Desert Villa Mountain View",
       category: "Mountain ",
-    },
-    {
-      id: 4,
-      src: image4,
-      alt: "Fish-Tales Master Bedroom view",
-      category: "Properties",
-    },
-    {
-      id: 5,
-      src: image5,
-      alt: "Fish-Tales Mordern Bedroom view",
-      category: "Lifestyle",
-    },
-    {
-      id: 6,
-      src: image6,
-      alt: "Mystical Mermaid Villa view",
-      category: "Lifestyle",
-    },
-    {
-      id: 7,
-      src: image7,
-      alt: "Southern Exposer Villa Living Room",
-      category: "Properties",
-    },
-    {
-      id: 8,
-      src: image8,
-      alt: "Southern Exposer Villa  ",
-      category: "Lifestyle",
     },
     {
       id: 9,
@@ -120,7 +84,7 @@ const GallerySection = () => {
 
   const paginatedImages = galleryImages.slice(
     (currentPage - 1) * imagesPerPage,
-    currentPage * imagesPerPage
+    currentPage * imagesPerPage,
   );
 
   const openModal = (image, index) => {
@@ -209,12 +173,12 @@ const GallerySection = () => {
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90">
             <div className="relative max-w-4xl max-h-full mx-4">
               {/* Close Button */}
-                <button
-                  onClick={closeModal}
-                  className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-full p-3 text-white  hover:text-gray-300 transition-colors duration-300 z-10"
-                >
-                  <X size={32} />
-                </button>
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-full p-3 text-white  hover:text-gray-300 transition-colors duration-300 z-10"
+              >
+                <X size={32} />
+              </button>
 
               {/* Navigation Buttons */}
               <button
