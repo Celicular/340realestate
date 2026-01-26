@@ -5,10 +5,10 @@ import image2 from "../../../assets/gallery/attraction2.jpg";
 import image3 from "../../../assets/gallery/attraction3.jpg";
 import image8 from "../../../assets/gallery/attraction4.JPG";
 
-import image4 from "../../../assets/gallery/about1.JPG";
-import image5 from "../../../assets/gallery/about3.JPG";
-import image6 from "../../../assets/gallery/about2.JPG";
-import image7 from "../../../assets/gallery/about4.JPG";
+import image4 from "../../../assets/gallery/about1.jpg";
+import image5 from "../../../assets/gallery/about3.jpg";
+import image6 from "../../../assets/gallery/about2.jpg";
+import image7 from "../../../assets/gallery/about4.jpg";
 
 import image14 from "../../../assets/gallery/mls1.jpg";
 import image9 from "../../../assets/gallery/mls2.jpg";

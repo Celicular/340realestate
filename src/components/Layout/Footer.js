@@ -20,7 +20,6 @@ const Footer = () => {
   ];
 
   const services = [
-    { name: "Villa Rentals", to: "/villa-rentals/desert-rose-villa" },
     { name: "Sales History", to: "/saleshistory" },
     { name: "For Sale", to: "/properties" },
   ];
