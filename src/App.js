@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { AuthProvider } from "./auth/AuthProvider";
 import ErrorBoundary from "./components/common/ErrorBoundary";
 
@@ -73,6 +73,7 @@ const DebugPage = lazy(() => import("./pages/DebugPage"));
 const MigrateReviews = lazy(() => import("./pages/MigrateReviews"));
 const AgentImageMigration = lazy(() => import("./pages/AgentImageMigration"));
 const AgentDataMigration = lazy(() => import("./pages/AgentDataMigration"));
+const ComparisonDetail = lazy(() => import("./pages/ComparisonDetail"));
 
 // Loading component
 const LoadingSpinner = () => (
@@ -85,12 +86,15 @@ const LoadingSpinner = () => (
 );
 
 function App() {
+  const location = useLocation();
+  const isComparisonPage = location.pathname === "/comparison";
+
   return (
     <ErrorBoundary>
       <AuthProvider>
         <div className="App relative scroll-smooth">
           {/* 🌐 Header */}
-          <Header />
+          <Header isTransparent={!isComparisonPage} />
 
           <ScrollToTop />
           {/* 📄 Main Page Content */}
@@ -135,6 +139,7 @@ function App() {
                 <Route path="/landsold/:id" element={<LandSoldDetail />} />
                 <Route path="/properties" element={<Properties />} />
                 <Route path="/landproperties" element={<LandProperties />} />
+                <Route path="/comparison" element={<ComparisonDetail />} />
                 <Route
                   path="/edit-viewing/:viewId"
                   element={<EditViewingProperty />}

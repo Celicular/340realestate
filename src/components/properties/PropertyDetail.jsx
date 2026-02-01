@@ -274,8 +274,8 @@ const handleBookingSubmit = async () => {
     <div>
       <section className="relative h-[65vh] md:h-[80vh] w-full overflow-hidden">
         <img
-          src={activeProperty.images[0]}
-          alt={activeProperty.title}
+          src={activeProperty?.images?.[0] || '/placeholder-image.jpg'}
+          alt={activeProperty?.title || 'Property'}
           className="absolute inset-0 w-full h-full object-cover object-center scale-105 transition-transform duration-700 ease-in-out"
         />
         <div className="absolute inset-0 bg-black/40" />
@@ -287,7 +287,7 @@ const handleBookingSubmit = async () => {
           className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4"
         >
           <h1 className="text-white text-3xl md:text-5xl font-bold tracking-wide mb-4">
-            {activeProperty.title}
+            {activeProperty?.title || 'Property Details'}
           </h1>
           <div className="h-1 w-32 bg-gradient-to-r from-tropical-500 to-blue-400 rounded-full mb-4"></div>
         </motion.div>
@@ -439,44 +439,52 @@ const handleBookingSubmit = async () => {
 
                   {/* Features */}
                   <div className="flex flex-wrap gap-6">
-                    <div className="flex items-center gap-2">
-                      <Bed className="text-blue-600" size={20} />
-                      <span className="font-medium">
-                        {activeProperty.features.beds} Beds
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Bath className="text-blue-600" size={20} />
-                      <span className="font-medium">
-                        {activeProperty.features.baths} Baths
-                      </span>
-                    </div>
-                    {activeProperty.features.pool && (
+                    {activeProperty?.features?.beds && (
+                      <div className="flex items-center gap-2">
+                        <Bed className="text-blue-600" size={20} />
+                        <span className="font-medium">
+                          {activeProperty.features.beds} Beds
+                        </span>
+                      </div>
+                    )}
+                    {activeProperty?.features?.baths && (
+                      <div className="flex items-center gap-2">
+                        <Bath className="text-blue-600" size={20} />
+                        <span className="font-medium">
+                          {activeProperty.features.baths} Baths
+                        </span>
+                      </div>
+                    )}
+                    {activeProperty?.features?.pool && (
                       <div className="flex items-center gap-2">
                         <Waves className="text-blue-600" size={20} />
                         <span className="font-medium">Pool Included</span>
                       </div>
                     )}
-                    <div className="flex items-center gap-2">
-                      <Home className="text-blue-600" size={20} />
-                      <span className="font-medium">
-                        {activeProperty.features.type}
-                      </span>
-                    </div>
+                    {activeProperty?.features?.type && (
+                      <div className="flex items-center gap-2">
+                        <Home className="text-blue-600" size={20} />
+                        <span className="font-medium">
+                          {activeProperty.features.type}
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Description */}
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                      Description
-                    </h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {activeProperty.description}
-                    </p>
-                  </div>
+                  {activeProperty?.description && (
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                        Description
+                      </h3>
+                      <p className="text-gray-700 leading-relaxed">
+                        {activeProperty.description}
+                      </p>
+                    </div>
+                  )}
 
                   {/* Full Description - Show when available */}
-                  {activeProperty.fullDescription && activeProperty.fullDescription !== activeProperty.description && (
+                  {activeProperty?.fullDescription && activeProperty.fullDescription !== activeProperty.description && (
                     <div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-3">
                         Full Details
@@ -531,19 +539,21 @@ const handleBookingSubmit = async () => {
                     )}
 
                   {/* Amenities */}
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                      Amenities
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                      {activeProperty.amenities.map((amenity, index) => (
-                        <div key={index} className="flex items-center gap-2">
-                          <Star className="text-blue-600" size={16} />
-                          <span className="text-gray-700">{amenity}</span>
-                        </div>
-                      ))}
+                  {activeProperty?.amenities && activeProperty.amenities.length > 0 && (
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                        Amenities
+                      </h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        {activeProperty.amenities.map((amenity, index) => (
+                          <div key={index} className="flex items-center gap-2">
+                            <Star className="text-blue-600" size={16} />
+                            <span className="text-gray-700">{amenity}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </motion.div>
             </div>

@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronUp, GitCompare } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { getRentalProperties } from "../../firebase/firestore";
 import { makeSlug } from "../../utils/slugify";
 import logo from "../../assets/logo.png";
+import CompareModal from "../CompareProperties/CompareModal";
 
-const Header = () => {
+const Header = ({ isTransparent = true }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [rentalProperties, setRentalProperties] = useState([]);
   const [openDropdowns, setOpenDropdowns] = useState({});
+  const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -182,7 +184,11 @@ const Header = () => {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 h-24 transition-all duration-500 ${
-          isScrolled ? "bg-[#fbf9f8] shadow-md" : "bg-transparent"
+          isScrolled 
+            ? "bg-[#fbf9f8] shadow-md" 
+            : isTransparent 
+              ? "bg-transparent" 
+              : "bg-white/95 backdrop-blur-sm"
         }`}
       >
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -192,7 +198,7 @@ const Header = () => {
               <div className="relative group">
                 <span
                   className={`cursor-pointer font-barlow text-sm px-2 py-1 ${
-                    isScrolled ? "text-[#3c6a72]" : "text-white"
+                    isScrolled ? "text-[#3c6a72]" : (isTransparent ? "text-white" : "text-[#3c6a72]")
                   }`}
                 >
                   Property Search
@@ -207,11 +213,11 @@ const Header = () => {
                 </div>
               </div>
 
-              <Link to="/aboutus" className={`${isScrolled ? "text-[#3c6a72]" : "text-white"} font-barlow text-sm px-2 py-1`}>
+              <Link to="/aboutus" className={`font-barlow text-sm px-2 py-1 ${isScrolled ? "text-[#3c6a72]" : (isTransparent ? "text-white" : "text-[#3c6a72]")}`}>
                 About Us
               </Link>
 
-              <Link to="/about" className={`${isScrolled ? "text-[#3c6a72]" : "text-white"} font-barlow text-sm px-2 py-1`}>
+              <Link to="/about" className={`font-barlow text-sm px-2 py-1 ${isScrolled ? "text-[#3c6a72]" : (isTransparent ? "text-white" : "text-[#3c6a72]")}`}>
                 About St. John
               </Link>
             </nav>
@@ -220,7 +226,7 @@ const Header = () => {
             <div className="flex-1 flex justify-center">
               <Link to="/" className="flex items-center space-x-3">
                 <img src={logo} alt="340 Real Estate" className="h-16 w-auto" />
-                <h1 className="text-xl font-bold uppercase" style={{ color: isScrolled ? "#2d3a3a" : "white" }}>
+                <h1 className="text-xl font-bold uppercase" style={{ color: isScrolled ? "#2d3a3a" : (isTransparent ? "white" : "#2d3a3a") }}>
                   340 Real Estate
                 </h1>
               </Link>
@@ -228,10 +234,25 @@ const Header = () => {
 
             {/* RIGHT NAV */}
             <div className="hidden lg:flex items-center gap-x-2">
+              <button
+                onClick={() => setIsCompareModalOpen(true)}
+                className={`flex items-center gap-2 uppercase text-sm px-3 py-2 rounded-lg transition-all ${
+                  isScrolled 
+                    ? "text-[#3c6a72] hover:bg-gray-100" 
+                    : isTransparent
+                      ? "text-white hover:bg-white/20"
+                      : "text-[#3c6a72] hover:bg-gray-100"
+                }`}
+                title="Compare Properties"
+              >
+                <GitCompare className="w-5 h-5" />
+                <span className="hidden xl:inline">Compare</span>
+              </button>
+
               <div className="relative group">
                 <span
                   className={`cursor-pointer uppercase text-sm px-2 py-1 ${
-                    isScrolled ? "text-[#3c6a72]" : "text-white"
+                    isScrolled ? "text-[#3c6a72]" : (isTransparent ? "text-white" : "text-[#3c6a72]")
                   }`}
                 >
                   Rentals
@@ -261,17 +282,17 @@ const Header = () => {
                 </div>
               </div>
 
-              <Link to="/testimonial" className={`${isScrolled ? "text-[#3c6a72]" : "text-white"} uppercase text-sm px-2 py-1`}>
+              <Link to="/testimonial" className={`uppercase text-sm px-2 py-1 ${isScrolled ? "text-[#3c6a72]" : (isTransparent ? "text-white" : "text-[#3c6a72]")}`}>
                 Testimonial
               </Link>
 
-              <a href="tel:+13406436068" className={`${isScrolled ? "text-[#3c6a72]" : "text-white"} text-sm px-2 py-1`}>
+              <a href="tel:+13406436068" className={`text-sm px-2 py-1 ${isScrolled ? "text-[#3c6a72]" : (isTransparent ? "text-white" : "text-[#3c6a72]")}`}>
                 +1 340-643-6068
               </a>
             </div>
 
             {/* MOBILE BUTTON */}
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={`p-2 ${isScrolled ? "text-[#3c6a72]" : "text-white"}`}>
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={`p-2 ${isScrolled ? "text-[#3c6a72]" : (isTransparent ? "text-white" : "text-[#3c6a72]")}`}>
               <HamburgerIcon open={isMenuOpen} />
             </button>
           </div>
@@ -292,11 +313,28 @@ const Header = () => {
             </div>
 
             <nav className="flex-1 overflow-y-auto px-6 py-6 space-y-4">
+              <button
+                onClick={() => {
+                  setIsCompareModalOpen(true);
+                  setIsMenuOpen(false);
+                }}
+                className="w-full flex items-center gap-2 px-4 py-3 rounded-xl text-left font-semibold hover:bg-[#f4eee9] text-[#523d2c]"
+              >
+                <GitCompare className="w-5 h-5" />
+                <span>Compare Properties</span>
+              </button>
+              
               {navLinks.map((link) => renderMobileLink(link))}
             </nav>
           </div>
         </>
       )}
+
+      {/* Compare Properties Modal */}
+      <CompareModal 
+        isOpen={isCompareModalOpen}
+        onClose={() => setIsCompareModalOpen(false)}
+      />
     </>
   );
 };
