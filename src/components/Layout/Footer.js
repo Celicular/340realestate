@@ -9,6 +9,8 @@ import {
 } from "react-icons/fa";
 import { Mail, Phone, MapPin } from "lucide-react";
 import logo from "../../assets/logo.png";
+import appstore from "../../assets/appstore.svg";
+import playstore from "../../assets/playstore.svg";
 
 const Footer = () => {
   const navLinks = [
@@ -149,6 +151,23 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
+            {/* App Store Icons */}
+            <div className="flex flex-col gap-3 mt-6 items-start">
+              <a href="#" onClick={(e) => e.preventDefault()}>
+                <img 
+                  src={appstore} 
+                  alt="Download on App Store" 
+                  className="h-14 cursor-pointer opacity-80"
+                />
+              </a>
+              <a href="#" onClick={(e) => e.preventDefault()}>
+                <img 
+                  src={playstore} 
+                  alt="Get it on Google Play" 
+                  className="h-14 cursor-pointer opacity-80"
+                />
+              </a>
+            </div>
           </div>
         </div>
 
