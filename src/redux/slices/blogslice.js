@@ -16,6 +16,13 @@ import blog3Image3 from "../../assets/blog/blog3/3.jpg";
 import blog3Image4 from "../../assets/blog/blog3/4.jpg";
 import blog3Image5 from "../../assets/blog/blog3/5.jpg";
 
+// Import images for 2025 recap blog
+import casaAmorImage from "../../assets/villa/casa-amor/casa1.jpg";
+import villadalmareImage from "../../assets/villa/dal mare/dc3f48c9.webp";
+import stjohnescapeImage from "../../assets/villa/st. john escape/images.jpg";
+import hansenbayImage from "../../assets/Land/6Z-3A Hansen Bay/20230829054221119333000000-o.jpg";
+import sunshinedaydreamImage from "../../assets/villa/st. john escape/sunshine-daydream-ii.jpg";
+
 // Create the hardcoded blogs
 const featuredBlogs = [
   {
@@ -120,33 +127,33 @@ We look forward to helping you find your perfect piece of paradise in St. John!`
   {
     id: "st-john-real-estate-2025-recap",
     title: "St. John Real Estate: 2025 Recap",
-    description: `The year 2025 was a fruitful one for St. John real estate. Nearly $100 million of real estate traded between Jan. 1, 2025 and Dec. 31, 2025. That's pretty impressive for an island that's not even 20 square miles.
+    description: `![Casa Amor recently sold for $1.2 million. 340 Real Estate represented the seller.](` + casaAmorImage + `)
+
+The year 2025 was a fruitful one for St. John real estate. Nearly $100 million of real estate traded between Jan. 1, 2025 and Dec. 31, 2025. That's pretty impressive for an island that's not even 20 square miles. Here is a quick real estate wrap up for the year 2025:
 
 ## Residential Sales in 2025
 
-![Casa Amor recently sold for $1.2 million. 340 Real Estate represented the seller.]()
+![Villa dal Mare recently sold for $1,325,000. 340 Real Estate represented the seller.](` + villadalmareImage + `)
 
 Forty eight residential properties sold in 2025, totaling $79,525,500. The least expensive residential property that sold was hurricane damaged and included a small, off grid cottage. That property sold for $255,000. The most expensive home sold was 2A Peter Bay. The selling price for that property was a whopping $10.5 million.
-
-![Villa dal Mare recently sold for $1,325,000. 340 Real Estate represented the seller.]()
 
 Five homes sold for under $500,000 in 2025. Two of the five were either hurricane damaged or a handyman's special. Thirteen properties sold between $500,001 and $999,999. Nineteen properties sold between $1 million and $1,999,999. Six properties sold between $2 million and $2,999,999. Four properties sold in the $3 million range.
 
 ## Condo Sales in 2025
 
-![St. John Escape sold for $1,016,000. 340 Real Estate represented the seller and the buyer.]()
+![St. John Escape sold for $1,016,000. 340 Real Estate represented the seller and the buyer.](` + stjohnescapeImage + `)
 
 Nine condos sold in 2025, totaling $8,405,000 in sales. The least expensive condo sale was an adorable, one-bedroom at Sunset Ridge. That sold for $500,000. 340 Real Estate represented the buyers. The most expensive condo that sold in 2025 was a one bedroom at Gallows Point. That sold for $1.5 million. Five condos sold for $1 million or less in 2025.
 
 ## Land Sales in 2025
 
-![This 1.39-acre lot sold for $220,000. 340 Real Estate represented the seller.]()
+![This 1.39-acre lot sold for $220,000. 340 Real Estate represented the seller.](` + hansenbayImage + `)
 
 Twenty three land parcels sold in 2025, ranging in price from $58,000 to $315,000.
 
 ## Commercial Sales in 2025
 
-![Sunshine Daydream sold for $1.5 million. 340 Real Estate represented the seller and the buyer.]()
+![Sunshine Daydream sold for $1.5 million. 340 Real Estate represented the seller and the buyer.](` + sunshinedaydreamImage + `)
 
 Two commercial businesses sold in 2025, and 340 Real Estate was involved in both transactions. First, Sunshine Daydream Boat Charters sold for $1.5 million. Tammy Donnelly, owner of 340 Real Estate Co., represented the seller and the buyer. The St. John & St. Thomas Map and Guidebook also sold in 2025. The selling price was $200,000. Tammy Donnelly, owner of 340 Real Estate, represented the sellers.
 
@@ -154,36 +161,37 @@ Two commercial businesses sold in 2025, and 340 Real Estate was involved in both
 
 Fourteen fractional/timeshare sales closed in 2025, totaling $147,425.
 
-- Six sold at Grande Bay ranging from $5,000 to $35,000
-- Five sold at the Westin ranging from $4,000 to $12,000
-- Three sold at Sunset Ridge. Each sold for $4,875
+Six sold at Grande Bay ranging from $5,000 to $35,000.
+Five sold at the Westin ranging from $4,000 to $12,000.
+Three sold at Sunset Ridge. Each sold for $4,875.
 
 ## What's Currently on the Market
 
 There are currently 84 properties listed for sale. The list prices range from $349,000 to $34,999,000.
 
-**Condos:** 17 listed for sale, ranging from $349,000 to $1.95 million
+There are currently 17 condos listed for sale. The list prices range from $349,000 to $1.95 million.
 
-**Land:** 169 parcels listed for sale, ranging from $70,000 to $39,999,000
+There are currently 169 land parcels listed for sale. The list prices range from $70,000 to $39,999,000.
 
-**Fractional/Timeshares:** 91 listed for sale, ranging from $1 to $158,000
+There are currently 91 fractional/timeshares listed for sale. The list prices range from $1 to $158,000.
 
-**Commercial:** 8 opportunities available including 1 lease ($1,000/month near Westin), 1 cleaning business, 3 restaurants, 1 boat charter, and 2 vacation rental/hotel properties. Prices range from $120,000 to $29 million.
+There are currently eight commercial opportunities available in St. John. There is a lease opportunity for $1,000 a month near the Westin. There is also a cleaning business, three restaurants, one boat charter, and two vacation rental/hotel properties available for sale. The prices for the businesses available for sale range from $120,000 to $29 million.
 
-## Ready to Find Your Property?
+Want to see what's for sale in St. John? Click here to visit 340 Real Estate's property search. You can search for homes, condos, land, commercial and fractional listings.
 
-340 Real Estate has an experienced team of brokers and sales agents dedicated to helping you find the perfect property—whether it's a cozy condo, sprawling land, a luxurious home, or a commercial space. With more than 70 years of combined experience in St. John real estate, our team is ready to turn your dream into reality.
+340 Real Estate has an experienced team of brokers and sales agents who are dedicated to helping you find the perfect property - whether it's a cozy condo, sprawling land, a luxurious home or a commercial space. Whether you are planning a week-long getaway, a permanent relocation, or if you are looking to purchase an investment property, we're here to help. With more than 70 years of combined experience in St. John real estate, the 340 Real Estate team is ready to turn your dream into reality.
 
-**The 340 Real Estate Team**
-- Tammy Donnelly, Broker/Owner
-- Jennifer Doran, Sales Associate
-- Tina Petitto, Sales Associate
-- Rosanne Ramos Lloyd, Sales Associate
-- Jenn Manes, Sales Associate
-- Adonis Morton, Sales Associate
-- Mary Maroney, Sales Associate
-- John McCann, Broker Associate
-- Mark Shekleton, Sales Associate`,
+## The 340 Real Estate Team
+
+Tammy Donnelly, Broker/Owner
+Jennifer Doran, Sales Associate
+Tina Petitto, Sales Associate
+Rosanne Ramos Lloyd, Sales Associate
+Jenn Manes, Sales Associate
+Adonis Morton, Sales Associate
+Mary Maroney, Sales Associate
+John McCann, Broker Associate
+Mark Shekleton, Sales Associate`,
     coverImage: realestateintro,
     author: "340 Real Estate Team",
     publishedAt: "Jan 5, 26",
