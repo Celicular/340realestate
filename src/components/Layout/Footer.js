@@ -9,8 +9,8 @@ import {
 } from "react-icons/fa";
 import { Mail, Phone, MapPin } from "lucide-react";
 import logo from "../../assets/logo.png";
-import appstore from "../../assets/appstore.svg";
-import playstore from "../../assets/playstore.svg";
+import appstoreBadge from "../../assets/appstore.svg";
+import playstoreBadge from "../../assets/playstore.svg";
 
 const Footer = () => {
   const navLinks = [
@@ -117,6 +117,24 @@ const Footer = () => {
                 </a>
               </div>
             </div>
+
+            {/* App Store Badges */}
+            <div className="mt-8">
+              <p className="text-sm font-semibold mb-3">Download Our App</p>
+              <div className="flex gap-4 flex-wrap">
+                <a
+                  href="https://apps.apple.com/in/app/340-real-estate/id6758051723"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition hover:opacity-80"
+                >
+                  <img src={appstoreBadge} alt="Download on App Store" className="h-12" />
+                </a>
+                <div className="opacity-50 cursor-not-allowed">
+                  <img src={playstoreBadge} alt="Get it on Google Play" className="h-12" />
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Quick Links */}
@@ -151,23 +169,6 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-            {/* App Store Icons */}
-            <div className="flex flex-col gap-3 mt-6 items-start">
-              <a href="#" onClick={(e) => e.preventDefault()}>
-                <img 
-                  src={appstore} 
-                  alt="Download on App Store" 
-                  className="h-14 cursor-pointer opacity-80"
-                />
-              </a>
-              <a href="#" onClick={(e) => e.preventDefault()}>
-                <img 
-                  src={playstore} 
-                  alt="Get it on Google Play" 
-                  className="h-14 cursor-pointer opacity-80"
-                />
-              </a>
-            </div>
           </div>
         </div>
 

@@ -21,7 +21,8 @@ const featuredBlogs = [
   {
     id: "get-to-know-st-john",
     title: "Get to Know St. John",
-    description: `St. John is the smallest of the three US Virgin Islands. The island is just under 20 square miles, and more than two-thirds is National Park. Less than 5,000 residents live on the island full time, and tourism is the number one source of the economy.
+    description:
+      `St. John is the smallest of the three US Virgin Islands. The island is just under 20 square miles, and more than two-thirds is National Park. Less than 5,000 residents live on the island full time, and tourism is the number one source of the economy.
 
 ## How to Get to St. John
 
@@ -31,10 +32,14 @@ The majority of visitors arrive via ferry in Cruz Bay, which is the island's mai
 
 There are a variety of shops, restaurants and bars located in and around Cruz Bay. The town has two main dining and shopping areas - Wharfside Village, which is located on the beach in Cruz Bay, and Mongoose Junction, which is located on the other side of town. It takes less than 10 minutes to walk from Wharfside Village to Mongoose Junction.
 
-![Wharfside Hotel](` + wharfImage + `)
+![Wharfside Hotel](` +
+      wharfImage +
+      `)
 *Image credit: Wharfside Hotel*
 
-![Mongoose Junction](` + mongooseImage + `)
+![Mongoose Junction](` +
+      mongooseImage +
+      `)
 *Image credit: Mongoose Junction*
 
 The island is separated into three main areas - Cruz Bay, Coral Bay and the East End. Within these sections, there are a variety of neighbourhoods including Great Cruz Bay, Chocolate Hole, Rendezvous, Ditleff Point, Fish Bay, Peter Bay, Catherineberg, Carolina, Freeman's Ground, Privateer Bay, among others.
@@ -43,7 +48,9 @@ The island is separated into three main areas - Cruz Bay, Coral Bay and the East
 
 People who visit St. John typically engage in a variety of outdoor activities, including beach hopping, snorkeling, hiking, boating, paddle-boarding, kayaking, scuba diving, and more. St. John proudly boasts having one of the top-ranked beaches in the world - Trunk Bay.
 
-![Trunk Bay](` + trunkbayImage + `)
+![Trunk Bay](` +
+      trunkbayImage +
+      `)
 
 ## St. John Real Estate
 
@@ -58,7 +65,7 @@ As of October 2025, there are 72 residential properties, 14 condos, 173 land par
     category: "Lifestyle",
     isHardcoded: true,
     views: 0,
-    likes: 0
+    likes: 0,
   },
   {
     id: "340-real-estate-first-blog",
@@ -108,20 +115,99 @@ We look forward to helping you find your perfect piece of paradise in St. John!`
     category: "Company News",
     isHardcoded: true,
     views: 2,
-    likes: 0
+    likes: 0,
+  },
+  {
+    id: "st-john-real-estate-2025-recap",
+    title: "St. John Real Estate: 2025 Recap",
+    description: `The year 2025 was a fruitful one for St. John real estate. Nearly $100 million of real estate traded between Jan. 1, 2025 and Dec. 31, 2025. That's pretty impressive for an island that's not even 20 square miles.
+
+## Residential Sales in 2025
+
+![Casa Amor recently sold for $1.2 million. 340 Real Estate represented the seller.]()
+
+Forty eight residential properties sold in 2025, totaling $79,525,500. The least expensive residential property that sold was hurricane damaged and included a small, off grid cottage. That property sold for $255,000. The most expensive home sold was 2A Peter Bay. The selling price for that property was a whopping $10.5 million.
+
+![Villa dal Mare recently sold for $1,325,000. 340 Real Estate represented the seller.]()
+
+Five homes sold for under $500,000 in 2025. Two of the five were either hurricane damaged or a handyman's special. Thirteen properties sold between $500,001 and $999,999. Nineteen properties sold between $1 million and $1,999,999. Six properties sold between $2 million and $2,999,999. Four properties sold in the $3 million range.
+
+## Condo Sales in 2025
+
+![St. John Escape sold for $1,016,000. 340 Real Estate represented the seller and the buyer.]()
+
+Nine condos sold in 2025, totaling $8,405,000 in sales. The least expensive condo sale was an adorable, one-bedroom at Sunset Ridge. That sold for $500,000. 340 Real Estate represented the buyers. The most expensive condo that sold in 2025 was a one bedroom at Gallows Point. That sold for $1.5 million. Five condos sold for $1 million or less in 2025.
+
+## Land Sales in 2025
+
+![This 1.39-acre lot sold for $220,000. 340 Real Estate represented the seller.]()
+
+Twenty three land parcels sold in 2025, ranging in price from $58,000 to $315,000.
+
+## Commercial Sales in 2025
+
+![Sunshine Daydream sold for $1.5 million. 340 Real Estate represented the seller and the buyer.]()
+
+Two commercial businesses sold in 2025, and 340 Real Estate was involved in both transactions. First, Sunshine Daydream Boat Charters sold for $1.5 million. Tammy Donnelly, owner of 340 Real Estate Co., represented the seller and the buyer. The St. John & St. Thomas Map and Guidebook also sold in 2025. The selling price was $200,000. Tammy Donnelly, owner of 340 Real Estate, represented the sellers.
+
+## Fractional/Timeshare Sales in 2025
+
+Fourteen fractional/timeshare sales closed in 2025, totaling $147,425.
+
+- Six sold at Grande Bay ranging from $5,000 to $35,000
+- Five sold at the Westin ranging from $4,000 to $12,000
+- Three sold at Sunset Ridge. Each sold for $4,875
+
+## What's Currently on the Market
+
+There are currently 84 properties listed for sale. The list prices range from $349,000 to $34,999,000.
+
+**Condos:** 17 listed for sale, ranging from $349,000 to $1.95 million
+
+**Land:** 169 parcels listed for sale, ranging from $70,000 to $39,999,000
+
+**Fractional/Timeshares:** 91 listed for sale, ranging from $1 to $158,000
+
+**Commercial:** 8 opportunities available including 1 lease ($1,000/month near Westin), 1 cleaning business, 3 restaurants, 1 boat charter, and 2 vacation rental/hotel properties. Prices range from $120,000 to $29 million.
+
+## Ready to Find Your Property?
+
+340 Real Estate has an experienced team of brokers and sales agents dedicated to helping you find the perfect property—whether it's a cozy condo, sprawling land, a luxurious home, or a commercial space. With more than 70 years of combined experience in St. John real estate, our team is ready to turn your dream into reality.
+
+**The 340 Real Estate Team**
+- Tammy Donnelly, Broker/Owner
+- Jennifer Doran, Sales Associate
+- Tina Petitto, Sales Associate
+- Rosanne Ramos Lloyd, Sales Associate
+- Jenn Manes, Sales Associate
+- Adonis Morton, Sales Associate
+- Mary Maroney, Sales Associate
+- John McCann, Broker Associate
+- Mark Shekleton, Sales Associate`,
+    coverImage: realestateintro,
+    author: "340 Real Estate Team",
+    publishedAt: "Jan 5, 26",
+    category: "Market Report",
+    isHardcoded: true,
+    views: 0,
+    likes: 0,
   },
   {
     id: "two-affordable-parcels-coral-bay",
-    title: "Two Affordable Parcels Listed For Sale & Owner Financing May Be Available",
+    title:
+      "Two Affordable Parcels Listed For Sale & Owner Financing May Be Available",
     subtitle: "Are you looking to build a home here on St. John?",
-    description: `
+    description:
+      `
 Are you looking to build a home here on St. John? Are you looking for gentle breezes and views of the harbor, the British Virgin Islands, or lush valleys—all while being close to Skinny Legs, Lime Out, and other great restaurants and shops in Coral Bay?
 
 If so, you may be interested in one of the two properties that recently listed for sale.
 
 ## 8-36 Emmaus, Coral Bay
 
-![Property Location – 8-36 Emmaus](` + blog3Image1 + `)
+![Property Location – 8-36 Emmaus](` +
+      blog3Image1 +
+      `)
 
 This quarter-acre lot is located in the **Seagrape Hill subdivision**, which you enter from Route 10 (Centerline Road) just before Skinny Legs in Coral Bay.
 
@@ -131,7 +217,9 @@ The property is accessed from **fully paved roads**, with **utilities nearby**. 
 
 The location is peaceful and private, yet still close to the action of Coral Bay. You could walk to Skinny Legs—though you probably wouldn't want to walk home uphill 🙂—but it really is that close.
 
-![View Toward Coral Bay Harbor](` + blog3Image2 + `)
+![View Toward Coral Bay Harbor](` +
+      blog3Image2 +
+      `)
 
 **Seagrape Hill highlights:**
 - Located near Skinny Legs
@@ -150,7 +238,9 @@ This property is listed with **Jenn Manes** for **$99,000**.
 
 ## 10-25F Carolina, Coral Bay
 
-![Road Access – 10-25F Carolina](` + blog3Image3 + `)
+![Road Access – 10-25F Carolina](` +
+      blog3Image3 +
+      `)
 
 This **0.35-acre parcel** offers beautiful views of **Coral Bay Harbor**, the **Sir Francis Drake Channel**, the **British Virgin Islands**, and beyond.
 
@@ -158,11 +248,15 @@ The lot is located on **Bordeaux Mountain** and faces east. Access is relatively
 
 The land is currently a bit overgrown due to recent rains, but a small amount of clearing would reveal **spectacular water views**.
 
-![Water Views After Clearing](` + blog3Image4 + `)
+![Water Views After Clearing](` +
+      blog3Image4 +
+      `)
 
 The current owners have **expired house plans** that they will provide to the new owners—an important advantage that can save both time and money during the building process.
 
-![Expired Plans – Two-Story Home](` + blog3Image5 + `)
+![Expired Plans – Two-Story Home](` +
+      blog3Image5 +
+      `)
 
 This property is also priced to sell, with **owner financing potentially available** to qualified buyers.
 
@@ -186,13 +280,13 @@ Listings can be searched 24/7.`,
     category: "Property News",
     isHardcoded: true,
     views: 0,
-    likes: 0
-  }
+    likes: 0,
+  },
 ];
 
 // Process hardcoded blogs with proper image mapping
 const processHardcodedBlogs = () => {
-  return featuredBlogs.map(blog => ({
+  return featuredBlogs.map((blog) => ({
     ...blog,
     // Use the mapped image instead of the variable reference
     coverImage: getBlogImage(blog),
@@ -200,13 +294,17 @@ const processHardcodedBlogs = () => {
     // Keep the original publishedAt date as is
     publishedAt: blog.publishedAt || "Oct 8, 25",
     // Convert createdAt to timestamp (milliseconds) for Redux serialization
-    createdAt: blog.createdAt || (blog.id === "get-to-know-st-john" ? new Date("2025-10-13").getTime() : new Date("2025-10-08").getTime()),
+    createdAt:
+      blog.createdAt ||
+      (blog.id === "get-to-know-st-john"
+        ? new Date("2025-10-13").getTime()
+        : new Date("2025-10-08").getTime()),
     // Add default values
     views: blog.views || 0,
     likes: blog.likes || 0,
-    status: blog.status || 'published',
-    author: blog.author || '340 Real Estate Team',
-    category: blog.category || 'Real Estate'
+    status: blog.status || "published",
+    author: blog.author || "340 Real Estate Team",
+    category: blog.category || "Real Estate",
   }));
 };
 
@@ -215,46 +313,46 @@ const hardcodedBlogs = processHardcodedBlogs();
 
 // Async thunk for fetching blogs from Firestore (enhanced with hardcoded images)
 export const fetchBlogs = createAsyncThunk(
-  'blogs/fetchBlogs',
+  "blogs/fetchBlogs",
   async (limitCount = 20) => {
     const result = await getBlogs(limitCount);
     if (result.success) {
       // Blogs are already filtered for published status in the service
-      const blogsWithImages = result.data.map(blog => ({
+      const blogsWithImages = result.data.map((blog) => ({
         ...blog,
         coverImage: blog.coverImage || getBlogImage(blog),
-        isHardcoded: false // Mark as Firebase blog
+        isHardcoded: false, // Mark as Firebase blog
       }));
       return blogsWithImages;
     }
     throw new Error(result.error);
-  }
+  },
 );
 
 // Async thunk for fetching a single blog (enhanced with hardcoded images)
 export const fetchBlogById = createAsyncThunk(
-  'blogs/fetchBlogById',
+  "blogs/fetchBlogById",
   async (blogId) => {
     // First check if it's a hardcoded blog
-    const hardcodedBlog = hardcodedBlogs.find(blog => blog.id === blogId);
+    const hardcodedBlog = hardcodedBlogs.find((blog) => blog.id === blogId);
     if (hardcodedBlog) {
       return {
         ...hardcodedBlog,
-        coverImage: hardcodedBlog.coverImage || getBlogImage(hardcodedBlog)
+        coverImage: hardcodedBlog.coverImage || getBlogImage(hardcodedBlog),
       };
     }
-    
+
     // Try Firestore
     const result = await getBlog(blogId);
     if (result.success) {
-      return { 
-        ...result.data, 
+      return {
+        ...result.data,
         coverImage: result.data.coverImage || getBlogImage(result.data),
-        isHardcoded: false 
+        isHardcoded: false,
       };
     }
     throw new Error(result.error);
-  }
+  },
 );
 
 const blogSlice = createSlice({
@@ -266,7 +364,7 @@ const blogSlice = createSlice({
     currentBlog: null,
     loading: false,
     error: null,
-    lastFetch: null
+    lastFetch: null,
   },
   reducers: {
     clearCurrentBlog: (state) => {
@@ -281,7 +379,7 @@ const blogSlice = createSlice({
       // Combine blogs, prioritizing Firebase blogs first, then hardcoded blogs at the bottom
       const uniqueBlogs = [];
       const seenIds = new Set();
-      
+
       // Add Firebase blogs first
       for (const blog of state.firebaseBlogs) {
         if (blog.id && !seenIds.has(blog.id)) {
@@ -289,7 +387,7 @@ const blogSlice = createSlice({
           seenIds.add(blog.id);
         }
       }
-      
+
       // Add hardcoded blogs at the bottom only if their ID hasn't been seen
       for (const blog of hardcodedBlogs) {
         if (blog.id && !seenIds.has(blog.id)) {
@@ -297,19 +395,22 @@ const blogSlice = createSlice({
           seenIds.add(blog.id);
         }
       }
-      
+
       state.allBlogs = uniqueBlogs;
     },
     // Update blog in local state
     updateBlogInState: (state, action) => {
       const { id, updates } = action.payload;
-      const blogIndex = state.firebaseBlogs.findIndex(blog => blog.id === id);
+      const blogIndex = state.firebaseBlogs.findIndex((blog) => blog.id === id);
       if (blogIndex !== -1) {
-        state.firebaseBlogs[blogIndex] = { ...state.firebaseBlogs[blogIndex], ...updates };
+        state.firebaseBlogs[blogIndex] = {
+          ...state.firebaseBlogs[blogIndex],
+          ...updates,
+        };
         // Rebuild allBlogs with proper deduplication - Firebase first, hardcoded at bottom
         const uniqueBlogs = [];
         const seenIds = new Set();
-        
+
         // Add Firebase blogs first
         for (const blog of state.firebaseBlogs) {
           if (blog.id && !seenIds.has(blog.id)) {
@@ -317,7 +418,7 @@ const blogSlice = createSlice({
             seenIds.add(blog.id);
           }
         }
-        
+
         // Add hardcoded blogs at the bottom only if their ID hasn't been seen
         for (const blog of hardcodedBlogs) {
           if (blog.id && !seenIds.has(blog.id)) {
@@ -325,7 +426,7 @@ const blogSlice = createSlice({
             seenIds.add(blog.id);
           }
         }
-        
+
         state.allBlogs = uniqueBlogs;
       }
       if (state.currentBlog && state.currentBlog.id === id) {
@@ -335,12 +436,14 @@ const blogSlice = createSlice({
     // Remove blog from local state
     removeBlogFromState: (state, action) => {
       const blogId = action.payload;
-      state.firebaseBlogs = state.firebaseBlogs.filter(blog => blog.id !== blogId);
-      
+      state.firebaseBlogs = state.firebaseBlogs.filter(
+        (blog) => blog.id !== blogId,
+      );
+
       // Rebuild with proper deduplication - Firebase first, hardcoded at bottom
       const uniqueBlogs = [];
       const seenIds = new Set();
-      
+
       // Add Firebase blogs first, but skip if it's the one being removed
       for (const blog of state.firebaseBlogs) {
         if (blog.id && !seenIds.has(blog.id)) {
@@ -348,7 +451,7 @@ const blogSlice = createSlice({
           seenIds.add(blog.id);
         }
       }
-      
+
       // Add hardcoded blogs at the bottom only if their ID hasn't been seen and it's not being removed
       for (const blog of hardcodedBlogs) {
         if (blog.id && blog.id !== blogId && !seenIds.has(blog.id)) {
@@ -356,9 +459,9 @@ const blogSlice = createSlice({
           seenIds.add(blog.id);
         }
       }
-      
+
       state.allBlogs = uniqueBlogs;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -373,7 +476,7 @@ const blogSlice = createSlice({
         // Combine blogs, prioritizing Firebase blogs first, then hardcoded blogs at the bottom
         const uniqueBlogs = [];
         const seenIds = new Set();
-        
+
         // Add Firebase blogs first
         for (const blog of action.payload) {
           if (blog.id && !seenIds.has(blog.id)) {
@@ -381,7 +484,7 @@ const blogSlice = createSlice({
             seenIds.add(blog.id);
           }
         }
-        
+
         // Add hardcoded blogs at the bottom only if their ID hasn't been seen
         for (const blog of hardcodedBlogs) {
           if (blog.id && !seenIds.has(blog.id)) {
@@ -389,7 +492,7 @@ const blogSlice = createSlice({
             seenIds.add(blog.id);
           }
         }
-        
+
         state.allBlogs = uniqueBlogs;
         state.lastFetch = new Date().toISOString();
       })
@@ -416,12 +519,12 @@ const blogSlice = createSlice({
   },
 });
 
-export const { 
-  clearCurrentBlog, 
-  clearError, 
-  addBlog, 
-  updateBlogInState, 
-  removeBlogFromState 
+export const {
+  clearCurrentBlog,
+  clearError,
+  addBlog,
+  updateBlogInState,
+  removeBlogFromState,
 } = blogSlice.actions;
 
 // Selectors
