@@ -7,6 +7,7 @@ import HeroSection from "../components/home/Hero/HeroSection";
 import AboutSection from "../components/home/Sections/AboutSection";
 import TeamSection from "../components/home/Sections/TeamSection";
 import ContactSection from "../components/home/Sections/ContactSection";
+import FeaturedPropertySection from "../components/home/Sections/FeaturedPropertySection";
 import AgentsSection from "../components/home/Sections/AgentsSection";
 import RentalsSection from "../components/home/Sections/RentalsSection";
 import GallerySection from "../components/home/Sections/GallerySection";
@@ -32,6 +33,7 @@ function Home() {
       <AboutSection />
       <TeamSection />
       <ContactSection />
+      <FeaturedPropertySection />
       <AgentsSection />
       <HeroLogos />
       <RentalsSection />
