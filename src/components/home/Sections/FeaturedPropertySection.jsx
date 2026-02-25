@@ -81,7 +81,7 @@ const FeaturedPropertySection = () => {
                 <p className="text-sm font-semibold text-gray-600 mb-1">PRICE</p>
                 <p className="text-3xl lg:text-4xl font-bold text-tropical-700 flex items-center gap-2">
                   <DollarSign size={32} />
-                  {(property.price / 1000000).toFixed(2)}M
+                  {property.price.toLocaleString()}
                 </p>
               </div>
             </div>
