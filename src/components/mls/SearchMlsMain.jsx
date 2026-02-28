@@ -113,10 +113,10 @@ const SearchMlsMain = () => {
             filterParams.append("bathrooms", filters.bathrooms);
           if (filters.landOnly) filterParams.append("landpropertyonly", "true");
 
-          url = `http://66.179.188.160/filtered?${filterParams.toString()}`;
+          url = `https://api.340realestate.com/filtered?${filterParams.toString()}`;
         } else {
           // Use paginated endpoint for regular pagination (no filters)
-          url = `http://66.179.188.160/paginated?page=${currentPage}&limit=${itemsPerPage}`;
+          url = `https://api.340realestate.com/paginated?page=${currentPage}&limit=${itemsPerPage}`;
         }
 
         const controller = new AbortController();
