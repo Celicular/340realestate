@@ -34,7 +34,7 @@ const createMarkerIcon = (color = "blue") => {
     blue: "#3b82f6",
     red: "#ef4444",
   };
-  
+
   return L.divIcon({
     html: `
       <div style="
@@ -65,7 +65,6 @@ const createMarkerIcon = (color = "blue") => {
   });
 };
 
-
 const SearchMlsMain = () => {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -93,47 +92,55 @@ const SearchMlsMain = () => {
       try {
         setLoading(true);
         setError(null);
-        
+
         let url = "";
-        const hasFilters = filters.priceMin || filters.priceMax || filters.beds || filters.bathrooms || filters.landOnly;
-        
+        const hasFilters =
+          filters.priceMin ||
+          filters.priceMax ||
+          filters.beds ||
+          filters.bathrooms ||
+          filters.landOnly;
+
         if (hasFilters) {
           // Use filtered endpoint for filter requests (returns all matching results)
           const filterParams = new URLSearchParams();
-          if (filters.priceMin) filterParams.append('pricemin', filters.priceMin);
-          if (filters.priceMax) filterParams.append('pricemax', filters.priceMax);
-          if (filters.beds) filterParams.append('beds', filters.beds);
-          if (filters.bathrooms) filterParams.append('bathrooms', filters.bathrooms);
-          if (filters.landOnly) filterParams.append('landpropertyonly', 'true');
-          
-          url = `https://flexmlsdatatammy.onrender.com/filtered?${filterParams.toString()}`;
+          if (filters.priceMin)
+            filterParams.append("pricemin", filters.priceMin);
+          if (filters.priceMax)
+            filterParams.append("pricemax", filters.priceMax);
+          if (filters.beds) filterParams.append("beds", filters.beds);
+          if (filters.bathrooms)
+            filterParams.append("bathrooms", filters.bathrooms);
+          if (filters.landOnly) filterParams.append("landpropertyonly", "true");
+
+          url = `http://66.179.188.160/filtered?${filterParams.toString()}`;
         } else {
           // Use paginated endpoint for regular pagination (no filters)
-          url = `https://flexmlsdatatammy.onrender.com/paginated?page=${currentPage}&limit=${itemsPerPage}`;
+          url = `http://66.179.188.160/paginated?page=${currentPage}&limit=${itemsPerPage}`;
         }
-        
+
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 15000);
-        
+
         const response = await fetch(url, {
           signal: controller.signal,
-          mode: 'cors',
+          mode: "cors",
           headers: {
-            'Accept': 'application/json',
-          }
+            Accept: "application/json",
+          },
         });
-        
+
         clearTimeout(timeoutId);
-        
+
         if (!response.ok) {
           throw new Error(`API returned status ${response.status}`);
         }
-        
+
         const data = await response.json();
         const propertyList = data.properties || [];
-        
+
         setProperties(propertyList);
-        
+
         if (hasFilters) {
           // Filtered endpoint returns all results without pagination
           const totalCount = data.count || propertyList.length;
@@ -146,15 +153,19 @@ const SearchMlsMain = () => {
         }
       } catch (err) {
         console.error("Error fetching properties:", err);
-        
-        if (err.name === 'AbortError') {
-          setError("Request timed out. The API server might be sleeping. Please try again in a moment.");
+
+        if (err.name === "AbortError") {
+          setError(
+            "Request timed out. The API server might be sleeping. Please try again in a moment.",
+          );
         } else if (err instanceof TypeError) {
-          setError("Unable to connect to MLS database. Please check your internet connection.");
+          setError(
+            "Unable to connect to MLS database. Please check your internet connection.",
+          );
         } else {
           setError("Failed to load properties. Please try again.");
         }
-        
+
         setProperties([]);
         setTotalPages(1);
         setTotalCount(0);
@@ -240,7 +251,10 @@ const SearchMlsMain = () => {
       {/* Main Content */}
       <div className="w-full flex flex-row gap-0">
         {/* Left Section - Cards - Scrollable */}
-        <div className="w-2/5 overflow-y-auto p-4 sm:p-6 lg:p-8" style={{ height: "calc(100vh - 240px)" }}>
+        <div
+          className="w-2/5 overflow-y-auto p-4 sm:p-6 lg:p-8"
+          style={{ height: "calc(100vh - 240px)" }}
+        >
           {/* Header with Filter Button */}
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-slate-800">Properties</h2>
@@ -254,9 +268,15 @@ const SearchMlsMain = () => {
           </div>
 
           {/* Active Filters Display */}
-          {(filters.priceMin || filters.priceMax || filters.beds || filters.bathrooms || filters.landOnly) && (
+          {(filters.priceMin ||
+            filters.priceMax ||
+            filters.beds ||
+            filters.bathrooms ||
+            filters.landOnly) && (
             <div className="mb-4 p-3 bg-blue-50 rounded-lg">
-              <p className="text-xs text-blue-700 font-medium mb-2">Active Filters:</p>
+              <p className="text-xs text-blue-700 font-medium mb-2">
+                Active Filters:
+              </p>
               <div className="flex flex-wrap gap-2">
                 {filters.priceMin && (
                   <span className="text-xs bg-blue-600 text-white px-2 py-1 rounded">
@@ -288,89 +308,121 @@ const SearchMlsMain = () => {
           )}
 
           {/* Pagination Controls at Top */}
-          {!loading && !error && properties.length > 0 && !filters.priceMin && !filters.priceMax && !filters.beds && !filters.bathrooms && !filters.landOnly && (
-            <div className="bg-white rounded-xl shadow-md p-4 mb-4">
-              <div className="flex items-center justify-between mb-4">
-                <p className="text-sm text-slate-600">
-                  Page <span className="font-bold text-slate-800">{currentPage}</span> of{" "}
-                  <span className="font-bold text-slate-800">{totalPages}</span>
-                </p>
-                <p className="text-sm text-slate-600">
-                  Showing {properties.length} of{" "}
-                  <span className="font-bold text-slate-800">{totalCount}</span> properties
-                </p>
-              </div>
-
-              <div className="flex items-center justify-center gap-2">
-                <button
-                  onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                  disabled={currentPage === 1}
-                  className="px-3 py-2 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition font-medium text-sm"
-                >
-                  Previous
-                </button>
-
-                <div className="flex gap-1">
-                  {Array.from({ length: Math.min(5, totalPages) }).map((_, idx) => {
-                    let pageNum;
-                    if (totalPages <= 5) {
-                      pageNum = idx + 1;
-                    } else if (currentPage <= 3) {
-                      pageNum = idx + 1;
-                    } else if (currentPage >= totalPages - 2) {
-                      pageNum = totalPages - 4 + idx;
-                    } else {
-                      pageNum = currentPage - 2 + idx;
-                    }
-
-                    return (
-                      <button
-                        key={pageNum}
-                        onClick={() => setCurrentPage(pageNum)}
-                        className={`px-3 py-2 rounded-lg text-sm font-medium transition ${
-                          pageNum === currentPage
-                            ? "bg-blue-600 text-white"
-                            : "border border-slate-300 text-slate-700 hover:bg-slate-50"
-                        }`}
-                      >
-                        {pageNum}
-                      </button>
-                    );
-                  })}
+          {!loading &&
+            !error &&
+            properties.length > 0 &&
+            !filters.priceMin &&
+            !filters.priceMax &&
+            !filters.beds &&
+            !filters.bathrooms &&
+            !filters.landOnly && (
+              <div className="bg-white rounded-xl shadow-md p-4 mb-4">
+                <div className="flex items-center justify-between mb-4">
+                  <p className="text-sm text-slate-600">
+                    Page{" "}
+                    <span className="font-bold text-slate-800">
+                      {currentPage}
+                    </span>{" "}
+                    of{" "}
+                    <span className="font-bold text-slate-800">
+                      {totalPages}
+                    </span>
+                  </p>
+                  <p className="text-sm text-slate-600">
+                    Showing {properties.length} of{" "}
+                    <span className="font-bold text-slate-800">
+                      {totalCount}
+                    </span>{" "}
+                    properties
+                  </p>
                 </div>
 
-                <button
-                  onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                  disabled={currentPage === totalPages}
-                  className="px-3 py-2 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition font-medium text-sm"
-                >
-                  Next
-                </button>
+                <div className="flex items-center justify-center gap-2">
+                  <button
+                    onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                    disabled={currentPage === 1}
+                    className="px-3 py-2 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition font-medium text-sm"
+                  >
+                    Previous
+                  </button>
+
+                  <div className="flex gap-1">
+                    {Array.from({ length: Math.min(5, totalPages) }).map(
+                      (_, idx) => {
+                        let pageNum;
+                        if (totalPages <= 5) {
+                          pageNum = idx + 1;
+                        } else if (currentPage <= 3) {
+                          pageNum = idx + 1;
+                        } else if (currentPage >= totalPages - 2) {
+                          pageNum = totalPages - 4 + idx;
+                        } else {
+                          pageNum = currentPage - 2 + idx;
+                        }
+
+                        return (
+                          <button
+                            key={pageNum}
+                            onClick={() => setCurrentPage(pageNum)}
+                            className={`px-3 py-2 rounded-lg text-sm font-medium transition ${
+                              pageNum === currentPage
+                                ? "bg-blue-600 text-white"
+                                : "border border-slate-300 text-slate-700 hover:bg-slate-50"
+                            }`}
+                          >
+                            {pageNum}
+                          </button>
+                        );
+                      },
+                    )}
+                  </div>
+
+                  <button
+                    onClick={() =>
+                      setCurrentPage(Math.min(totalPages, currentPage + 1))
+                    }
+                    disabled={currentPage === totalPages}
+                    className="px-3 py-2 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition font-medium text-sm"
+                  >
+                    Next
+                  </button>
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
           {/* Filtered Results Info at Top */}
-          {(filters.priceMin || filters.priceMax || filters.beds || filters.bathrooms || filters.landOnly) && !loading && !error && (
-            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-4 text-center">
-              <p className="text-sm text-blue-700">
-                Showing <span className="font-bold">{properties.length}</span> matching propert{properties.length === 1 ? "y" : "ies"}
-              </p>
-            </div>
-          )}
+          {(filters.priceMin ||
+            filters.priceMax ||
+            filters.beds ||
+            filters.bathrooms ||
+            filters.landOnly) &&
+            !loading &&
+            !error && (
+              <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-4 text-center">
+                <p className="text-sm text-blue-700">
+                  Showing <span className="font-bold">{properties.length}</span>{" "}
+                  matching propert{properties.length === 1 ? "y" : "ies"}
+                </p>
+              </div>
+            )}
 
           {/* Properties List */}
           <div className="space-y-3" ref={cardsContainerRef}>
             {loading ? (
               <div className="flex flex-col items-center justify-center py-12">
-                <Loader2 className="animate-spin text-blue-600 mb-3" size={32} />
+                <Loader2
+                  className="animate-spin text-blue-600 mb-3"
+                  size={32}
+                />
                 <p className="text-slate-600">Loading properties...</p>
               </div>
             ) : error ? (
               <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex gap-3">
                 <AlertCircle className="text-red-600 flex-shrink-0" size={20} />
                 <div>
-                  <p className="text-red-700 text-sm font-medium">Unable to Load Properties</p>
+                  <p className="text-red-700 text-sm font-medium">
+                    Unable to Load Properties
+                  </p>
                   <p className="text-red-600 text-xs mt-1">{error}</p>
                 </div>
               </div>
@@ -380,7 +432,9 @@ const SearchMlsMain = () => {
                 <p className="text-slate-600 font-medium">
                   No properties found
                 </p>
-                <p className="text-slate-500 text-sm mt-1">Try adjusting your filters</p>
+                <p className="text-slate-500 text-sm mt-1">
+                  Try adjusting your filters
+                </p>
               </div>
             ) : (
               properties.map((property, index) => (
@@ -400,7 +454,10 @@ const SearchMlsMain = () => {
         </div>
 
         {/* Right Section - Map - Sticky */}
-        <div className="w-3/5 p-4 sm:p-6 lg:p-8 bg-slate-50 sticky top-0" style={{ height: "calc(100vh - 211px)" }}>
+        <div
+          className="w-3/5 p-4 sm:p-6 lg:p-8 bg-slate-50 sticky top-0"
+          style={{ height: "calc(100vh - 211px)" }}
+        >
           <div className="bg-white rounded-xl shadow-md overflow-hidden w-full h-full">
             {loading ? (
               <div className="w-full h-full flex items-center justify-center bg-slate-100">
@@ -414,11 +471,12 @@ const SearchMlsMain = () => {
               >
                 <TileLayer
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                  attribution='&copy; OpenStreetMap contributors'
+                  attribution="&copy; OpenStreetMap contributors"
                   maxZoom={19}
                 />
                 {properties.map((property, index) => {
-                  const lat = property.Latitude || parseFloat(property.latitude);
+                  const lat =
+                    property.Latitude || parseFloat(property.latitude);
                   const lng =
                     property.Longitude || parseFloat(property.longitude);
 
@@ -477,7 +535,9 @@ const SearchMlsMain = () => {
           <div className="bg-white rounded-xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
             <div className="sticky top-0 bg-white border-b border-slate-200 p-6 flex items-center justify-between">
-              <h2 className="text-xl font-bold text-slate-800">Filter Properties</h2>
+              <h2 className="text-xl font-bold text-slate-800">
+                Filter Properties
+              </h2>
               <button
                 onClick={() => setShowFilterModal(false)}
                 className="text-slate-500 hover:text-slate-700 transition"
@@ -529,7 +589,9 @@ const FilterModal = ({ filters, onApply, onClose }) => {
         </h3>
         <div className="space-y-3">
           <div>
-            <label className="block text-xs text-slate-600 mb-2">Minimum Price</label>
+            <label className="block text-xs text-slate-600 mb-2">
+              Minimum Price
+            </label>
             <input
               type="number"
               placeholder="Min"
@@ -541,7 +603,9 @@ const FilterModal = ({ filters, onApply, onClose }) => {
             />
           </div>
           <div>
-            <label className="block text-xs text-slate-600 mb-2">Maximum Price</label>
+            <label className="block text-xs text-slate-600 mb-2">
+              Maximum Price
+            </label>
             <input
               type="number"
               placeholder="Max"
@@ -563,7 +627,9 @@ const FilterModal = ({ filters, onApply, onClose }) => {
         </h3>
         <div className="space-y-3">
           <div>
-            <label className="block text-xs text-slate-600 mb-2">Minimum Bedrooms</label>
+            <label className="block text-xs text-slate-600 mb-2">
+              Minimum Bedrooms
+            </label>
             <input
               type="number"
               placeholder="0"
@@ -575,7 +641,9 @@ const FilterModal = ({ filters, onApply, onClose }) => {
             />
           </div>
           <div>
-            <label className="block text-xs text-slate-600 mb-2">Minimum Bathrooms</label>
+            <label className="block text-xs text-slate-600 mb-2">
+              Minimum Bathrooms
+            </label>
             <input
               type="number"
               placeholder="0"
@@ -605,7 +673,9 @@ const FilterModal = ({ filters, onApply, onClose }) => {
             }
             className="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
           />
-          <span className="text-sm font-medium text-slate-700">Land Properties Only</span>
+          <span className="text-sm font-medium text-slate-700">
+            Land Properties Only
+          </span>
         </label>
       </div>
 
@@ -629,10 +699,20 @@ const FilterModal = ({ filters, onApply, onClose }) => {
 };
 
 // Property Card Component
-const PropertyCard = ({ property, formatPrice, onSelect, isSelected, isHovered, onHover, onHoverOut }) => {
+const PropertyCard = ({
+  property,
+  formatPrice,
+  onSelect,
+  isSelected,
+  isHovered,
+  onHover,
+  onHoverOut,
+}) => {
   const mainImage = property.images?.[0];
-  const beds = property.BedsTotal || property.card_fields?.total_bedrooms || "—";
-  const baths = property.BathsTotal || property.card_fields?.total_bathrooms || "—";
+  const beds =
+    property.BedsTotal || property.card_fields?.total_bedrooms || "—";
+  const baths =
+    property.BathsTotal || property.card_fields?.total_bathrooms || "—";
   const estate = property.card_fields?.estate || "—";
   const parcelNumber = property.card_fields?.parcel_number || "—";
 
@@ -730,7 +810,10 @@ const PropertyCard = ({ property, formatPrice, onSelect, isSelected, isHovered, 
             className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-1 rounded text-xs font-semibold transition-all flex items-center justify-center gap-1 group"
           >
             View
-            <ChevronRight size={12} className="group-hover:translate-x-0.5 transition" />
+            <ChevronRight
+              size={12}
+              className="group-hover:translate-x-0.5 transition"
+            />
           </a>
         )}
       </div>
