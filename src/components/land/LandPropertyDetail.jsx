@@ -330,11 +330,15 @@ const LandPropertyDetail = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="bg-white rounded-2xl p-8 shadow-lg"
+                className="bg-white rounded-2xl p-8 shadow-lg relative"
               >
                 <div className="space-y-6">
                   {/* Header */}
-                  <div>
+                  <div className="relative">
+                    {/* Under Contract Badge */}
+                    <div className="absolute -top-2 right-0 bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                      Under Contract
+                    </div>
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">
                       {property.title}
                     </h1>
