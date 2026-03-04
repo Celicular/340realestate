@@ -37,8 +37,11 @@ const PropertyDetail = () => {
     const fetchProperty = async () => {
       try {
         setLoading(true);
+        console.log(`🔍 Fetching property with ID: ${id}`);
+        
         // First try residential portfolio
         let result = await getPortfolioItems('residential');
+        console.log(`📦 Residential portfolio result:`, result);
         let property = null;
         
         if (result.success) {
@@ -48,6 +51,7 @@ const PropertyDetail = () => {
         // If not found in residential, try commercial
         if (!property) {
           result = await getPortfolioItems('commercial');
+          console.log(`📦 Commercial portfolio result:`, result);
           if (result.success) {
             property = result.data.find(p => p.id === id);
           }
@@ -56,12 +60,16 @@ const PropertyDetail = () => {
         // If not found in commercial, try land
         if (!property) {
           result = await getPortfolioItems('land');
+          console.log(`📦 Land portfolio result:`, result);
           if (result.success) {
             property = result.data.find(p => p.id === id);
           }
         }
         
         if (property) {
+          console.log(`✅ Property found:`, property);
+          console.log(`📋 Under Contract Field:`, property.under_contract);
+          console.log(`📋 Under Contract Status:`, property.under_contract === true ? `✅ TRUE - Badge will show` : `❌ FALSE or undefined - Badge will not show`);
           // Add fallback images if property has no images
           if (!property.images || property.images.length === 0) {
             const fallbackImages = getPropertyImages(property.id) || getPropertyImages(property.title);
@@ -71,10 +79,13 @@ const PropertyDetail = () => {
             }
           }
           setCurrentProperty(property);
+          console.log(`💾 Property set in state:`, property);
         } else {
+          console.log(`❌ Property not found with ID: ${id}`);
           setError('Property not found');
         }
       } catch (err) {
+        console.error(`⚠️ Error fetching property:`, err);
         setError('Error fetching property: ' + err.message);
       } finally {
         setLoading(false);
@@ -390,11 +401,17 @@ const PropertyDetail = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="bg-white rounded-2xl p-8 shadow-lg"
+                className="bg-white rounded-2xl p-8 shadow-lg relative"
               >
                 <div className="space-y-6">
                   {/* Header */}
-                  <div>
+                  <div className="relative pt-8">
+                    {/* Under Contract Badge */}
+                    {currentProperty.under_contract && (
+                      <div className="absolute top-0 right-0 bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg z-20">
+                        Under Contract
+                      </div>
+                    )}
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">
                       {currentProperty.title}
                     </h1>

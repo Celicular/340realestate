@@ -50,6 +50,8 @@ const PropertyDetail = () => {
           const property = result.data.find(item => item.id === id);
           if (property) {
             console.log('✅ Found property:', property);
+            console.log('📋 Under Contract Field:', property.under_contract);
+            console.log('📋 Under Contract Status:', property.under_contract === true ? '✅ TRUE - Badge will show' : '❌ FALSE or undefined - Badge will not show');
             setCurrentProperty(property);
           } else {
             console.log('❌ Property not found with ID:', id);
@@ -414,11 +416,17 @@ const handleBookingSubmit = async () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="bg-white rounded-2xl p-8 shadow-lg"
+                className="bg-white rounded-2xl p-8 shadow-lg relative"
               >
                 <div className="space-y-6">
                   {/* Header */}
-                  <div>
+                  <div className="relative pt-8">
+                    {/* Under Contract Badge */}
+                    {activeProperty?.under_contract && (
+                      <div className="absolute top-0 right-0 bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg z-20">
+                        Under Contract
+                      </div>
+                    )}
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">
                       {activeProperty.title}
                     </h1>
